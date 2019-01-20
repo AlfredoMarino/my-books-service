@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MisLibrosApplication<mislibros>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.alfredomarino.mislibros.MisLibrosApplication",
+            "projectName": "mislibros",
+            "args": ""
+        }
+    ]
+}
