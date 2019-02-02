@@ -38,20 +38,20 @@ public class Persona {
     @Column(name = "fechanacimiento")
     private Date fechaNacimiento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpais")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idpaisnacimiento")
     private Pais paisNacimiento;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idestado")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idestadonacimiento")
     private Estado estadoNacimiento;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idpais")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idpaisactual")
     private Pais paisActual;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idestado")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idestadoactual")
     private Estado estadoActual;
 
     @Column(name = "sobremi")

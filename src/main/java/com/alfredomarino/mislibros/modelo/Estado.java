@@ -2,7 +2,6 @@ package com.alfredomarino.mislibros.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +21,7 @@ public class Estado {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idEstado;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "idpais")
     private Pais pais;
 
@@ -34,13 +33,6 @@ public class Estado {
     }
 
     /**
-     * @param idEstado the idEstado to set
-     */
-    public void setIdEstado(Long idEstado) {
-        this.idEstado = idEstado;
-    }
-
-    /**
      * @return the idEstado
      */
     public Long getIdEstado() {
@@ -48,17 +40,18 @@ public class Estado {
     }
 
     /**
-     * @param pais the pais to set
+     * @param idEstado the idEstado to set
      */
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setIdEstado(Long idEstado) {
+        this.idEstado = idEstado;
     }
 
+
     /**
-     * @return the pais
+     * @return the nombre
      */
-    public Pais getPais() {
-        return pais;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
@@ -68,11 +61,5 @@ public class Estado {
         this.nombre = nombre;
     }
 
-    /**
-     * @return the nombre
-     */
-    public String getNombre() {
-        return nombre;
-    }
     
 }
