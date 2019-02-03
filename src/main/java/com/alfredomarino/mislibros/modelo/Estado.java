@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Estado
  */
@@ -23,6 +25,7 @@ public class Estado {
 
     @ManyToOne
     @JoinColumn(name = "idpais")
+    @JsonIgnore
     private Pais pais;
 
     @Column(name = "nombre")
@@ -44,6 +47,21 @@ public class Estado {
      */
     public void setIdEstado(Long idEstado) {
         this.idEstado = idEstado;
+    }
+
+
+    /**
+     * @return the pais
+     */
+    public Pais getPais() {
+        return pais;
+    }
+
+    /**
+     * @param pais the pais to set
+     */
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
 

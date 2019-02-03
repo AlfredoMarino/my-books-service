@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Persona
  */
@@ -27,6 +29,7 @@ public class Persona {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idusuario", nullable = false)
+    @JsonIgnore
     private Usuario usuario;
     
     @Column(name = "nombre")
@@ -38,19 +41,19 @@ public class Persona {
     @Column(name = "fechanacimiento")
     private Date fechaNacimiento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idpaisnacimiento")
     private Pais paisNacimiento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idestadonacimiento")
     private Estado estadoNacimiento;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idpaisactual")
     private Pais paisActual;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "idestadoactual")
     private Estado estadoActual;
 
