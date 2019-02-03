@@ -1,9 +1,9 @@
-package com.alfredomarino.mislibros.vista.resources;
+package com.alfredomarino.mislibros.core.controller;
 
 import java.util.List;
 
-import com.alfredomarino.mislibros.modelo.Estado;
-import com.alfredomarino.mislibros.negocio.services.EstadoService;
+import com.alfredomarino.mislibros.core.model.Pais;
+import com.alfredomarino.mislibros.core.business.services.PaisService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * EstadoController
+ * PaisController
  */
 @RestController
-@RequestMapping("/v1/estado")
-public class EstadoController {
+@RequestMapping("/v1/pais")
+public class PaisController {
 
     @Autowired
-    private EstadoService estadoService;
+    private PaisService paisService;
 
     @GetMapping
-    public ResponseEntity<List<Estado>> getEstados(){
+    public ResponseEntity<List<Pais>> getPaises(){
         
-        return new ResponseEntity<List<Estado>>(this.estadoService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Pais>>(this.paisService.findAll(), HttpStatus.OK);
     }
     
 }
