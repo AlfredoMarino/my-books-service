@@ -1,8 +1,8 @@
-package com.alfredomarino.mislibros.negocio.repository;
+package com.alfredomarino.mislibros.core.business.repository;
 
 import java.util.List;
 
-import com.alfredomarino.mislibros.modelo.Pais;
+import com.alfredomarino.mislibros.core.model.Pais;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

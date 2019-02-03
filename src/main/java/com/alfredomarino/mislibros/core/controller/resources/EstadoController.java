@@ -1,9 +1,9 @@
-package com.alfredomarino.mislibros.vista.resources;
+package com.alfredomarino.mislibros.core.controller.resources;
 
 import java.util.List;
 
-import com.alfredomarino.mislibros.modelo.Estado;
-import com.alfredomarino.mislibros.negocio.services.EstadoService;
+import com.alfredomarino.mislibros.core.model.Estado;
+import com.alfredomarino.mislibros.core.business.services.EstadoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

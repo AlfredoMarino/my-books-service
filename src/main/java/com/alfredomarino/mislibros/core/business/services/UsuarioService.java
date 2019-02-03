@@ -1,8 +1,8 @@
-package com.alfredomarino.mislibros.negocio.services;
+package com.alfredomarino.mislibros.core.business.services;
 
 
-import com.alfredomarino.mislibros.modelo.Usuario;
-import com.alfredomarino.mislibros.negocio.repository.UsuarioRepository;
+import com.alfredomarino.mislibros.core.model.Usuario;
+import com.alfredomarino.mislibros.core.business.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

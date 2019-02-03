@@ -1,9 +1,9 @@
-package com.alfredomarino.mislibros.negocio.repository;
+package com.alfredomarino.mislibros.core.business.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.alfredomarino.mislibros.modelo.Usuario;
+import com.alfredomarino.mislibros.core.model.Usuario;
 
 /**
  * UsuarioRepository

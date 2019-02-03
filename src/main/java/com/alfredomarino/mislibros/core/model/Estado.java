@@ -1,4 +1,4 @@
-package com.alfredomarino.mislibros.modelo;
+package com.alfredomarino.mislibros.core.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
