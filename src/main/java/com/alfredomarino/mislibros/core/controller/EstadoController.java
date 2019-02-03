@@ -26,6 +26,7 @@ public class EstadoController {
     public ResponseEntity<List<Estado>> getEstados(){
         
         return new ResponseEntity<List<Estado>>(this.estadoService.findAll(), HttpStatus.OK);
+        
     }
     
 }
