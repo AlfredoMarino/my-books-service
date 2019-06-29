@@ -1,12 +1,15 @@
-package com.alfredomarino.mislibros.modelo;
+package com.alfredomarino.mislibros.core.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -31,6 +34,10 @@ public class Usuario {
     @Column(name = "fechacreacion")
     private Date fechaCreacion;
 
+    @OneToOne(fetch = FetchType.LAZY,
+            cascade =  CascadeType.ALL,
+            mappedBy = "usuario")
+    private Persona persona;
 
     public Usuario() {
 
@@ -107,6 +114,19 @@ public class Usuario {
     }
 
 
+    /**
+     * @return the persona
+     */
+    public Persona getPersona() {
+        return persona;
+    }
+
+    /**
+     * @param persona the persona to set
+     */
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
 
 
 }

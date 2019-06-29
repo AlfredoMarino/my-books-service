@@ -39,3 +39,6 @@ buildNumber.properties
 # key ssh
 key_ssh.pub
 key_ssh
+
+# odt temporal
+*.odt#

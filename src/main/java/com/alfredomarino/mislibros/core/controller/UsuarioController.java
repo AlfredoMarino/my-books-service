@@ -1,7 +1,7 @@
-package com.alfredomarino.mislibros.vista.resources;
+package com.alfredomarino.mislibros.core.controller;
 
-import com.alfredomarino.mislibros.modelo.Usuario;
-import com.alfredomarino.mislibros.negocio.services.UsuarioService;
+import com.alfredomarino.mislibros.core.model.Usuario;
+import com.alfredomarino.mislibros.core.business.services.UsuarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
