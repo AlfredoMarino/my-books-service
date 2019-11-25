@@ -13,16 +13,13 @@ public class GoogleUtils {
 
     public static final String GOOGLEBOOKS_URL_BASE = "https://www.googleapis.com/books";
 
-    public static String searchVolume(String searchText) throws Exception {
+    public static JsonNode searchVolume(String searchText) throws Exception {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        ResponseEntity<String> response = restTemplate.getForEntity(GOOGLEBOOKS_URL_BASE + "/v1/volumes?q=la mala hora", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(GOOGLEBOOKS_URL_BASE + "/v1/volumes?q=" + searchText, String.class);
 
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode root = mapper.readTree(response.getBody());
-        JsonNode name = root.path("totalItems");
-
-        return name.asText();
+        return mapper.readTree(response.getBody());
     }
 }
