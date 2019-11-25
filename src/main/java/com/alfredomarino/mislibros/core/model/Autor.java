@@ -26,6 +26,9 @@ public class Autor {
         
     }
 
+    public Autor(String nombre) {
+        this.nombre = nombre;
+    }
 
     /**
      * @return the idAutor

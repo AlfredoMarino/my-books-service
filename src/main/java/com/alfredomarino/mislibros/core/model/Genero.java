@@ -29,6 +29,10 @@ public class Genero {
         
     }
 
+    public Genero(String nombre, String nombreIngles) {
+        this.nombre = nombre;
+        this.nombreIngles = nombreIngles;
+    }
 
     /**
      * @return the idGenero

@@ -59,6 +59,19 @@ public class Libro {
         
     }
 
+    public Libro(String titulo, String subtitulo, String sinopsis, Autor autor, Date fechaPublicacion, Genero genero, String imagen, String isbn10, String isbn13, String idGoogle) {
+        this.titulo = titulo;
+        this.subtitulo = subtitulo;
+        this.sinopsis = sinopsis;
+        this.autor = autor;
+        this.fechaPublicacion = fechaPublicacion;
+        this.genero = genero;
+        this.imagen = imagen;
+        this.isbn10 = isbn10;
+        this.isbn13 = isbn13;
+        this.idGoogle = idGoogle;
+    }
+
     /**
      * @return the idLibro
      */
