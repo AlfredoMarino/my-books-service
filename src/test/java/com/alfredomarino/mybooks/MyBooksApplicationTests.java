@@ -1,4 +1,4 @@
-package com.alfredomarino.mislibros;
+package com.alfredomarino.mybooks;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
