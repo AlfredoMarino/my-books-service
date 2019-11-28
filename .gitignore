@@ -42,3 +42,5 @@ key_ssh
 
 # odt temporal
 *.odt#
+
+/resources/run-my-books-aws
