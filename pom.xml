@@ -8,10 +8,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.alfredomarino</groupId>
-	<artifactId>mislibros</artifactId>
+	<artifactId>my-books</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Mis Libros</name>
-	<description>MisLibros API REST</description>
+	<name>My books</name>
+	<description>My Books API REST</description>
 	
 	<properties>
 		<java.version>11</java.version>

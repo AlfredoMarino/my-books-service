@@ -1,8 +1,12 @@
 ## Tomar el jar y guardarlo en la imagen
 
+    # Indicandole el contexto y el arcivo Dockerfile separados
+    docker image build -f ./resources/docker/my-books-service/Dockerfile . -t my-books:latest
     docker image build . -t my-books:latest
 
 ## ARRANCAR
+
+    docker-compose -f ./resources/docker/docker-compose.yml up
     docker-compose up
 La ip del Host es 192.168.99.100
 
@@ -13,6 +17,7 @@ ruta ejemplo http://192.168.99.100:5000/v1/pais
     cat resources/database/mybooks.sql | docker-compose exec -T db mysql -uroot -paamv mybooksdb
 
 ## asignar permisos
+    docker exec -it mybooks_db_1 mysql -p
     GRANT [permiso] ON [nombre de bases de datos].[nombre de tabla] TO ‘[nombre de usuario]’@'localhost’;
     GRANT ALL PRIVILEGES ON mybooksdb.* TO 'aamv'@'%';
 
