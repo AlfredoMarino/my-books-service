@@ -1,7 +1,10 @@
 version: '3.3'
 services:
   app:
-    image: my-books
+    # image: my-books
+    build:
+      context: ../../
+      dockerfile: resources/docker/my-books-service/Dockerfile
     depends_on:
       - db
     ports:

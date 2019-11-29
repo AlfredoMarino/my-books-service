@@ -5,22 +5,28 @@
     docker image build . -t my-books:latest
 
 ## ARRANCAR
-
+    # definitivo*************
+    docker-compose -f ./resources/docker/docker-compose.yml up --build
+    # ***********************
+       
     docker-compose -f ./resources/docker/docker-compose.yml up
     docker-compose up
 La ip del Host es 192.168.99.100
 
-ruta ejemplo http://192.168.99.100:5000/v1/pais
+ruta ejemplo http://192.168.99.100:5000/v1/country
 
 ## crear base de datos
     cat documentacion/mislibros.sql | docker-compose exec -T db mysql -uaamv -paamv db
-    cat resources/database/mybooks.sql | docker-compose exec -T db mysql -uroot -paamv mybooksdb
+    # estando en la carpeta resources/docker
+    cat ../database/sql-scripts/mybooks.sql | docker-compose exec -T db mysql -uroot -paamv mybooksdb
 
 ## asignar permisos
     docker exec -it mybooks_db_1 mysql -p
     GRANT [permiso] ON [nombre de bases de datos].[nombre de tabla] TO ‘[nombre de usuario]’@'localhost’;
     GRANT ALL PRIVILEGES ON mybooksdb.* TO 'aamv'@'%';
-
+    
+## Insert en consola sql
+    INSERT INTO mybooksdb.country (name) VALUES ('Venezuela');
 
 ## mysql inline
     docker-compose exec -T db mysql -uaamv -paamv db <<< "INSERT INTO pais (nombre) VALUES ('PRUEBA')"
