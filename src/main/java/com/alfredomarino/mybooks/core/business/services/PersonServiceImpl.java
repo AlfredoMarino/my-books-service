@@ -25,4 +25,9 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findAllByNameOrLastname(String name, String lastname){
         return this.personRepository.findAllByNameOrLastname(name, lastname);
     }
+
+    @Override
+    public Person create(Person person){
+        return this.personRepository.save(person);
+    }
 }

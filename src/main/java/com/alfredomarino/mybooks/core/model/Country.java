@@ -75,4 +75,13 @@ public class Country {
     public void setRegions(Set<Region> regions) {
         this.regions = regions;
     }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "idCountry=" + idCountry +
+                ", name='" + name + '\'' +
+                ", regions=" + regions +
+                '}';
+    }
 }

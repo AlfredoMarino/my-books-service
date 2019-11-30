@@ -128,5 +128,15 @@ public class User {
         this.person = person;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userState=" + userState +
+                ", creationDate=" + creationDate +
+                ", person=" + person +
+                '}';
+    }
 }

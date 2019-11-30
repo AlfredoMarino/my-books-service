@@ -222,5 +222,20 @@ public class Person {
         this.photo = photo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "idPerson=" + idPerson +
+                ", user=" + user +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthdate=" + birthdate +
+                ", nativeCountry=" + nativeCountry +
+                ", nativeRegion=" + nativeRegion +
+                ", currentCountry=" + currentCountry +
+                ", currentRegion=" + currentRegion +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
+    }
 }

@@ -234,6 +234,21 @@ public class Library {
         this.creationDate = creationDate;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Library{" +
+                "idLibrary=" + idLibrary +
+                ", person=" + person +
+                ", book=" + book +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", initialCountry=" + initialCountry +
+                ", initialRegion=" + initialRegion +
+                ", finalCountry=" + finalCountry +
+                ", finalRegion=" + finalRegion +
+                ", rating=" + rating +
+                ", note='" + note + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
+    }
 }
