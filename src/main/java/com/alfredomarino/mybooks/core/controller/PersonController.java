@@ -33,15 +33,5 @@ public class PersonController {
     ) {
         return new ResponseEntity<List<Person>>(this.personService.findAllByNameOrLastname(name, lastname), HttpStatus.OK);
     }
-
-    @PostMapping
-    public ResponseEntity<Person> create(@RequestBody Person person) {
-
-        User user = userService.findByUserNameAndPassword("AAMV", "AAMV");
-
-        person.setUser(user);
-        System.out.println(person);
-        return new ResponseEntity<Person>(this.personService.create(person), HttpStatus.CREATED);
-    }
     
 }
