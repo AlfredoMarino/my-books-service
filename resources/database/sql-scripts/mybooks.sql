@@ -137,7 +137,7 @@ CREATE TABLE `person` (
 
 CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
-  `nameuser` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `username` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `userstate` tinyint(11) NOT NULL DEFAULT '1' COMMENT '1: Activo | 2: Inactivo',
   `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP

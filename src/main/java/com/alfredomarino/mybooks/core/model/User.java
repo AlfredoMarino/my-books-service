@@ -31,12 +31,10 @@ public class User {
     @Column(name = "userstate")
     private Short userState;
 
-    @Column(name = "creationdate")
+    @Column(name = "creationdate", insertable = false, updatable = false)
     private Date creationDate;
 
-    @OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Person person;
 
     public User() {
@@ -128,5 +126,15 @@ public class User {
         this.person = person;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "idUser=" + idUser +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userState=" + userState +
+                ", creationDate=" + creationDate +
+                ", person=" + person +
+                '}';
+    }
 }

@@ -76,5 +76,12 @@ public class Category {
         this.englishName = englishName;
     }
 
-
+    @Override
+    public String toString() {
+        return "Category{" +
+                "idCategory=" + idCategory +
+                ", name='" + name + '\'' +
+                ", englishName='" + englishName + '\'' +
+                '}';
+    }
 }

@@ -2,16 +2,7 @@ package com.alfredomarino.mybooks.core.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,8 +18,8 @@ public class Person {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long idPerson;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "iduser", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "iduser", referencedColumnName = "iduser", unique = true)
     @JsonIgnore
     private User user;
     
@@ -222,5 +213,20 @@ public class Person {
         this.photo = photo;
     }
 
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "idPerson=" + idPerson +
+                ", user=" + user +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", birthdate=" + birthdate +
+                ", nativeCountry=" + nativeCountry +
+                ", nativeRegion=" + nativeRegion +
+                ", currentCountry=" + currentCountry +
+                ", currentRegion=" + currentRegion +
+                ", aboutMe='" + aboutMe + '\'' +
+                ", photo='" + photo + '\'' +
+                '}';
+    }
 }

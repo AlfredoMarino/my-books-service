@@ -1,5 +1,7 @@
 package com.alfredomarino.mybooks.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -26,6 +28,7 @@ public class Country {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private Set<Region> regions;
 
@@ -74,5 +77,14 @@ public class Country {
      */
     public void setRegions(Set<Region> regions) {
         this.regions = regions;
+    }
+
+    @Override
+    public String toString() {
+        return "Country{" +
+                "idCountry=" + idCountry +
+                ", name='" + name + '\'' +
+                ", regions=" + regions +
+                '}';
     }
 }

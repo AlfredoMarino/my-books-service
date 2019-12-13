@@ -226,6 +226,20 @@ public class Book {
         this.idGoogle = idGoogle;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "idBook=" + idBook +
+                ", title='" + title + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", synopsis='" + synopsis + '\'' +
+                ", author=" + author +
+                ", publicationDate=" + publicationDate +
+                ", category=" + category +
+                ", image='" + image + '\'' +
+                ", isbn10='" + isbn10 + '\'' +
+                ", isbn13='" + isbn13 + '\'' +
+                ", idGoogle='" + idGoogle + '\'' +
+                '}';
+    }
 }

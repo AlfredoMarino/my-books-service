@@ -8,4 +8,5 @@ public interface PersonService {
 
     List<Person> findAllByNameOrLastname(String name, String lastname);
 
+    Person create(Person person);
 }

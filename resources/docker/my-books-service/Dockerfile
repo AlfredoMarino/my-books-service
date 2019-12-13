@@ -2,7 +2,7 @@
 FROM adoptopenjdk/openjdk11:latest
 
 # Add Maintainer Info
-LABEL maintainer alfredoalejandro05@gmail.com
+LABEL maintainer=alfredoalejandro05@gmail.com
 
 # Update environment
 RUN apt-get update && apt-get install -y
