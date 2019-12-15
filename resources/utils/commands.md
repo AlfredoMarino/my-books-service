@@ -1,3 +1,6 @@
+# Run Script
+    ./resources/utils/compile-and-run-in-docker.sh
+
 ## Tomar el jar y guardarlo en la imagen
 
     # Indicandole el contexto y el arcivo Dockerfile separados

@@ -2,31 +2,22 @@ package com.alfredomarino.mybooks.core.model;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Library
  */
 @Entity
 @Table(name = "library")
+@IdClass(LibraryId.class)
 public class Library {
 
     @Id
-    @Column(name = "idlibrary")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idLibrary;
-    
     @ManyToOne
     @JoinColumn(name = "idperson")
     private Person person;
 
+    @Id
     @ManyToOne
     @JoinColumn(name = "idbook")
     private Book book;
@@ -59,25 +50,11 @@ public class Library {
     @Column(name = "note")
     private String note;
 
-    @Column(name = "creationdate")
+    @Column(name = "creationdate", insertable = false, updatable = false)
     private Date creationDate;
 
     public Library() {
         
-    }
-
-    /**
-     * @return the idLibrary
-     */
-    public Long getIdLibrary() {
-        return idLibrary;
-    }
-
-    /**
-     * @param idLibrary the idLibrary to set
-     */
-    public void setIdLibrary(Long idLibrary) {
-        this.idLibrary = idLibrary;
     }
 
     /**
@@ -237,8 +214,7 @@ public class Library {
     @Override
     public String toString() {
         return "Library{" +
-                "idLibrary=" + idLibrary +
-                ", person=" + person +
+                "person=" + person +
                 ", book=" + book +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
