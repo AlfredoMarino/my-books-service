@@ -11,5 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PersonRepository extends JpaRepository<Person, Long>{
 
-    public List<Person> findAllByNameOrLastname(String name, String lastname);
+    List<Person> findAllByNameOrLastname(String name, String lastname);
 }

@@ -1,11 +1,17 @@
 # Run Script
     ./resources/utils/compile-and-run-in-docker.sh
+    
+## Subir a dockerhub
+    
+    docker image build -f ./resources/docker/my-books-service/Dockerfile . -t aamv/my-books:latest
+    docker push aamv/my-books:latest
+
 
 ## Tomar el jar y guardarlo en la imagen
 
     # Indicandole el contexto y el arcivo Dockerfile separados
-    docker image build -f ./resources/docker/my-books-service/Dockerfile . -t my-books:latest
-    docker image build . -t my-books:latest
+    docker image build -f ./resources/docker/my-books-service/Dockerfile . -t aamv/my-books:latest
+    docker image build . -t aamv/my-books:latest
 
 ## ARRANCAR
     # definitivo*************

@@ -37,7 +37,6 @@ public class GoogleUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.println(root);
         return root;
     }
 }

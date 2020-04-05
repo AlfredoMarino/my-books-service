@@ -40,7 +40,9 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public Book getBookByGoogleId(String googleId) {
-        return parseNode(GoogleUtils.searchVolumeByGoogleId(googleId));
+        // TODO La busqueda por google id no esta trayendo categories, ver que puede estar pasando
+//        return parseNode(GoogleUtils.searchVolumeByGoogleId(googleId));
+        return parseGoogleResponse(GoogleUtils.searchVolumeByAnyText(googleId)).get(0);
     }
 
     private List<Book> parseGoogleResponse(JsonNode root) {
@@ -56,10 +58,7 @@ public class SearchServiceImpl implements SearchService {
         String subtitle = volumeNode.path(SUBTITLE_PROPERTY).asText();
         String synopsis = volumeNode.path(DESCRIPTION_PROPERTY).asText();
 
-        List<String> authorNames = StreamSupport.stream(
-                volumeNode.path(AUTHORS_PROPERTY).spliterator(),
-                false
-        ).map(JsonNode::asText).distinct().collect(Collectors.toList());
+        List<String> authorNames = volumeNodeIteratorToList(volumeNode, AUTHORS_PROPERTY);
         Author author = authorNames.size() > 0 ? new Author(authorNames.get(0)) : null;
 
         String dateString = volumeNode.path(PUBLISH_DATE_PROPERTY).asText();
@@ -68,10 +67,7 @@ public class SearchServiceImpl implements SearchService {
             publishedDate = DateUtils.getValidDate(dateString);
         }
 
-        List<String> categoryNames = StreamSupport.stream(
-                volumeNode.path(CATEGORIES_PROPERTY).spliterator(),
-                false
-        ).map(JsonNode::asText).distinct().collect(Collectors.toList());
+        List<String> categoryNames = volumeNodeIteratorToList(volumeNode, CATEGORIES_PROPERTY);
         Category category = categoryNames.size() > 0 ? new Category(null, categoryNames.get(0)) : null;
 
         String image = volumeNode.path(IMAGE_LINKS_PROPERTY).path(THUMBNAIL_PROPERTY).asText();
@@ -88,6 +84,12 @@ public class SearchServiceImpl implements SearchService {
 
         String idGoogle = node.path(ID_PROPERTY).asText();
         return new Book(title, subtitle, synopsis, author, publishedDate, category, image, isbn10, isbn13, idGoogle);
+    }
+
+    private List<String> volumeNodeIteratorToList(JsonNode node, String path) {
+        return StreamSupport.stream(node.path(path).spliterator(),false)
+                .map(JsonNode::asText)
+                .distinct().collect(Collectors.toList());
     }
 
 }

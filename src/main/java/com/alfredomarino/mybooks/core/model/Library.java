@@ -1,5 +1,7 @@
 package com.alfredomarino.mybooks.core.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -13,6 +15,7 @@ import javax.persistence.*;
 public class Library {
 
     @Id
+    //@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idperson")
     private Person person;
