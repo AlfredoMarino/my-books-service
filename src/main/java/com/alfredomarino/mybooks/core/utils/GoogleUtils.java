@@ -6,20 +6,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 /**
  * GoogleUtils
  */
 public class GoogleUtils {
 
     public static final String GOOGLEBOOKS_URL_BASE = "https://www.googleapis.com/books";
+    public static final String GOOGLEBOOKS_URL_VOLUMES = "/v1/volumes";
 
-    public static JsonNode searchVolume(String searchText) throws Exception {
+    public static JsonNode searchVolumeByAnyText(String anyText) {
+        String url = "?q=" + anyText;
+        return searchVolume(url);
+    }
 
+    public static JsonNode searchVolumeByGoogleId(String googleId) {
+        return searchVolume("/" + googleId);
+    }
+
+    private static JsonNode searchVolume(String query) {
         RestTemplate restTemplate = new RestTemplate();
-
-        ResponseEntity<String> response = restTemplate.getForEntity(GOOGLEBOOKS_URL_BASE + "/v1/volumes?q=" + searchText, String.class);
-
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readTree(response.getBody());
+        JsonNode root = null;
+        String url = GOOGLEBOOKS_URL_BASE + GOOGLEBOOKS_URL_VOLUMES + query;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        try {
+            root = mapper.readTree(response.getBody());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return root;
     }
 }

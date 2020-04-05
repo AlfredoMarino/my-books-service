@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PersonService {
 
+    boolean existsById(Long idPerson);
+
     List<Person> findAllByNameOrLastname(String name, String lastname);
 
     Person create(Person person);

@@ -1,6 +1,14 @@
 package com.alfredomarino.mybooks.core.business.services;
 
+import com.alfredomarino.mybooks.core.model.Book;
+
 public interface BookService {
 
-    void create(String searchText);
+    Book create(Book book);
+
+    Book createByGoogleId(String idGoogle) throws Exception;
+
+    Book getBookByGoogleId(String idGoogle);
+
+    Book getBookOrCreateIfNotExist(Book book) throws Exception;
 }

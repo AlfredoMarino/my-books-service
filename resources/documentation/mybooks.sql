@@ -53,8 +53,8 @@ CREATE TABLE `region` (
 
 CREATE TABLE `category` (
   `idcategory` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_spanish_ci,
-  `englishname` varchar(50) COLLATE utf8_spanish_ci
+  `name` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `englishname` varchar(50) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -64,6 +64,7 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `library` (
+  `idlibrary` int(11) NOT NULL,
   `idperson` int(11) NOT NULL,
   `idbook` int(11) NOT NULL,
   `startdate` date NOT NULL,
@@ -91,7 +92,7 @@ CREATE TABLE `book` (
   `idauthor` int(11) NOT NULL,
   `publicationdate` date NOT NULL,
   `idcategory` int(11) NOT NULL,
-  `image` varchar(512) COLLATE utf8_spanish_ci NOT NULL,
+  `image` varchar(256) COLLATE utf8_spanish_ci NOT NULL,
   `isbn10` bigint(20) NOT NULL,
   `isbn13` bigint(20) NOT NULL,
   `idgoogle` varchar(30) COLLATE utf8_spanish_ci NOT NULL
@@ -136,7 +137,7 @@ CREATE TABLE `person` (
 
 CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
-  `username` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
+  `nameuser` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(30) COLLATE utf8_spanish_ci NOT NULL,
   `userstate` tinyint(11) NOT NULL DEFAULT '1' COMMENT '1: Activo | 2: Inactivo',
   `creationdate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -169,7 +170,7 @@ ALTER TABLE `category`
 -- Indices de la tabla `library`
 --
 ALTER TABLE `library`
-  ADD PRIMARY KEY (`idbook`, `idperson`)
+  ADD PRIMARY KEY (`idlibrary`),
   ADD KEY `idperson` (`idperson`),
   ADD KEY `idbook` (`idbook`),
   ADD KEY `idinitialcountry` (`idinitialcountry`),
@@ -218,8 +219,8 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT de la tabla `author`
 --
 ALTER TABLE `author`
-  MODIFY `idauthor` int(11) NOT NULL AUTO_INCREMENT
-  ADD UNIQUE KEY `name_UNIQUE` (`name`);
+  MODIFY `idauthor` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `region`
 --
@@ -232,6 +233,11 @@ ALTER TABLE `region`
 ALTER TABLE `category`
   MODIFY `idcategory` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT de la tabla `library`
+--
+ALTER TABLE `library`
+  MODIFY `idlibrary` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `book`

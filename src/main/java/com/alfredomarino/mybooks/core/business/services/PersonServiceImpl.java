@@ -22,6 +22,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public boolean existsById(Long idPerson) {
+        return this.personRepository.existsById(idPerson);
+    }
+
+    @Override
     public List<Person> findAllByNameOrLastname(String name, String lastname){
         return this.personRepository.findAllByNameOrLastname(name, lastname);
     }

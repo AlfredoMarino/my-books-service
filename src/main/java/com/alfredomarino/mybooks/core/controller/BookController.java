@@ -25,9 +25,6 @@ public class BookController {
     
     @GetMapping
     public String getBook() {
-
-        bookService.create("prueba");
-
         return "hola mundo";
     }
     

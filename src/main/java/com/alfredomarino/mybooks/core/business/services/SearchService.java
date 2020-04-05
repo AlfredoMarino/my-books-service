@@ -5,5 +5,7 @@ import com.alfredomarino.mybooks.core.model.Book;
 import java.util.List;
 
 public interface SearchService {
-    public List<Book> getBooksByName(String name) throws Exception;
+    List<Book> getBooksByName(String name);
+
+    Book getBookByGoogleId(String googleId);
 }
