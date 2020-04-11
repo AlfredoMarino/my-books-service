@@ -38,8 +38,8 @@ ruta ejemplo http://192.168.99.100:5000/v1/country
     INSERT INTO mybooksdb.country (name) VALUES ('Venezuela');
 
 ## mysql inline
-    docker-compose exec -T db mysql -uaamv -paamv db <<< "INSERT INTO pais (nombre) VALUES ('PRUEBA')"
-    docker-compose exec -T db mysql -uaamv -paamv db <<< "INSERT INTO estado (nombre, idpais) VALUES ('estado1', 1)"
+    docker-compose exec -T db mysql -uaamv -paamv db <<< "INSERT INTO country (name) VALUES ('Venezuela')"
+    docker-compose exec -T db mysql -uaamv -paamv db <<< "INSERT INTO region (name, idcountry) VALUES ('Caracas', 1)"
 
 ## Compilar con maven sin correr las pruebas y no de el error de base de datos
     mvn clean install -DskipTests
