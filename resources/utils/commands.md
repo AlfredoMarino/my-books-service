@@ -25,7 +25,6 @@ La ip del Host es 192.168.99.100
 ruta ejemplo http://192.168.99.100:5000/v1/country
 
 ## crear base de datos
-    cat documentacion/mislibros.sql | docker-compose exec -T db mysql -uaamv -paamv db
     # estando en la carpeta resources/docker
     cat ../database/sql-scripts/mybooks.sql | docker-compose exec -T db mysql -uroot -paamv mybooksdb
 
@@ -43,3 +42,6 @@ ruta ejemplo http://192.168.99.100:5000/v1/country
 
 ## Compilar con maven sin correr las pruebas y no de el error de base de datos
     mvn clean install -DskipTests
+    
+## Peticion de prueba por curl
+    curl http://localhost:5000/v1/country
