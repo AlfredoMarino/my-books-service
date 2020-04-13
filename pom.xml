@@ -5,7 +5,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.2.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<groupId>com.alfredomarino</groupId>
 	<artifactId>my-books</artifactId>
@@ -15,7 +15,13 @@
 	
 	<properties>
 		<java.version>11</java.version>
-		<karate.version>0.9.3</karate.version>
+		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+		<flyway-maven-plugin.version>6.3.3</flyway-maven-plugin.version>
+
+		<database.driver>com.mysql.jdbc.Driver</database.driver>
+		<database.url>jdbc:mysql://192.168.99.100:3306/mybooksdb</database.url>
+		<database.username>aamv</database.username>
+		<database.password>aamv</database.password>
 	</properties>
 	
 	<dependencies>
@@ -23,43 +29,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-apache</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql-connector-java.version}</version>
+			<scope>runtime</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.intuit.karate</groupId>
-			<artifactId>karate-junit4</artifactId>
-			<version>${karate.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency> -->
-		
 	</dependencies>
 	
 	<build>
@@ -75,6 +60,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>${flyway-maven-plugin.version}</version>
+				<configuration>
+					<url>${database.url}</url>
+					<user>${database.username}</user>
+					<password>${database.password}</password>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
