@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/library")
+@RequestMapping("/v1/libraries")
 public class LibraryController {
 
     LibraryService libraryService;
@@ -22,11 +22,11 @@ public class LibraryController {
 
     @PostMapping
     public ResponseEntity<Library> create(@RequestBody Library library) throws Exception {
-        return new ResponseEntity<Library>(this.libraryService.create(library), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.libraryService.create(library), HttpStatus.CREATED);
     }
 
     @GetMapping
     public ResponseEntity<List<Library>> getLibrariesByPersonId(@RequestParam int idPerson) {
-        return new ResponseEntity<List<Library>>(this.libraryService.findByPersonId(idPerson), HttpStatus.OK);
+        return new ResponseEntity<>(this.libraryService.findByPersonId(idPerson), HttpStatus.OK);
     }
 }

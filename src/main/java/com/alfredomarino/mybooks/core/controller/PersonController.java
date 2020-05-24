@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
  * PersonController
  */
 @RestController
-@RequestMapping(value = "/v1/person")
+@RequestMapping(value = "/v1/persons")
 public class PersonController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class PersonController {
         @RequestParam String name,
         @RequestParam String lastname
     ) {
-        return new ResponseEntity<List<Person>>(this.personService.findAllByNameOrLastname(name, lastname), HttpStatus.OK);
+        return new ResponseEntity<>(this.personService.findAllByNameOrLastname(name, lastname), HttpStatus.OK);
     }
     
 }

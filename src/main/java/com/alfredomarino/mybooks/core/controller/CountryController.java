@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * CountryController
  */
 @RestController
-@RequestMapping("/v1/country")
+@RequestMapping("/v1/countries")
 public class CountryController {
 
     @Autowired
@@ -24,8 +24,7 @@ public class CountryController {
 
     @GetMapping
     public ResponseEntity<List<Country>> getCountries(){
-        
-        return new ResponseEntity<List<Country>>(this.countryService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(this.countryService.findAll(), HttpStatus.OK);
     }
     
 }

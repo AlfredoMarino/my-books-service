@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * RegionController
  */
 @RestController
-@RequestMapping("/v1/region")
+@RequestMapping("/v1/regions")
 public class RegionController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class RegionController {
     @GetMapping
     public ResponseEntity<List<Region>> getRegion(){
         
-        return new ResponseEntity<List<Region>>(this.regionService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(this.regionService.findAll(), HttpStatus.OK);
         
     }
     

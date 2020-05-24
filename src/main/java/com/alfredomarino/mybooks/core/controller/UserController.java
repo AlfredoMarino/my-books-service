@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * UserController
  */
 @RestController
-@RequestMapping("/v1/user")
+@RequestMapping("/v1/users")
 public class UserController {
 
     @Autowired
@@ -25,14 +25,14 @@ public class UserController {
         @RequestParam(value="password") String password) {
         
 
-        return new ResponseEntity<User>(this.userService.findByUserNameAndPassword(userName, password), HttpStatus.OK);
+        return new ResponseEntity<>(this.userService.findByUserNameAndPassword(userName, password), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
         Person person = user.getPerson();
         person.setUser(user);
-        return new ResponseEntity<User>(this.userService.create(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.userService.create(user), HttpStatus.CREATED);
     }
     
 }
