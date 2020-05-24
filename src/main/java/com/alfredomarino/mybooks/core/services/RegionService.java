@@ -7,4 +7,6 @@ import java.util.List;
 public interface RegionService {
 
     List<Region> findAll();
+
+    List<Region> findByCountryId(Long countryId);
 }

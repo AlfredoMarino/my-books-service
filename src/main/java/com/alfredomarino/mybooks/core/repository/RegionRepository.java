@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RegionRepository extends JpaRepository<Region, Long> {
 
-    public List<Region> findAll();
+    List<Region> findAll();
+
+    List<Region> findByCountry_IdCountry(Long countryId);
     
 }

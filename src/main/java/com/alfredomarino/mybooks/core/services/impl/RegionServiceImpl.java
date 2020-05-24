@@ -26,5 +26,9 @@ public class RegionServiceImpl implements RegionService {
     public List<Region> findAll(){
         return this.regionRepository.findAll();
     }
-    
+
+    @Override
+    public List<Region> findByCountryId(Long countryId) {
+        return this.regionRepository.findByCountry_IdCountry(countryId);
+    }
 }
