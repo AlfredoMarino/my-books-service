@@ -1,9 +1,8 @@
 package com.alfredomarino.mybooks.core.controller;
 
-import com.alfredomarino.mybooks.core.business.services.PersonService;
 import com.alfredomarino.mybooks.core.model.Person;
 import com.alfredomarino.mybooks.core.model.User;
-import com.alfredomarino.mybooks.core.business.services.UserService;
+import com.alfredomarino.mybooks.core.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

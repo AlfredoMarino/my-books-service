@@ -1,6 +1,6 @@
 package com.alfredomarino.mybooks.core.controller;
 
-import com.alfredomarino.mybooks.core.business.services.SearchService;
+import com.alfredomarino.mybooks.core.services.SearchService;
 import com.alfredomarino.mybooks.core.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

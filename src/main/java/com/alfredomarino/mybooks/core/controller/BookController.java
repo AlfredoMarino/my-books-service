@@ -1,6 +1,6 @@
 package com.alfredomarino.mybooks.core.controller;
 
-import com.alfredomarino.mybooks.core.business.services.BookService;
+import com.alfredomarino.mybooks.core.services.BookService;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;

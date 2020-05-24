@@ -2,7 +2,7 @@ package com.alfredomarino.mybooks.core.controller;
 
 import java.util.List;
 
-import com.alfredomarino.mybooks.core.business.services.RegionService;
+import com.alfredomarino.mybooks.core.services.RegionService;
 import com.alfredomarino.mybooks.core.model.Region;
 
 import org.springframework.beans.factory.annotation.Autowired;
