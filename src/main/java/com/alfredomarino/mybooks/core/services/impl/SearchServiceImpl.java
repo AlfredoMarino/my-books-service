@@ -17,22 +17,22 @@ import java.util.stream.StreamSupport;
 @Service
 public class SearchServiceImpl implements SearchService {
 
-    public final String ITEMS_PROPERTY = "items";
-    public final String VOLUME_INFO_PROPERTY = "volumeInfo";
-    public final String ID_PROPERTY = "id";
-    public final String TITLE_PROPERTY = "title";
-    public final String SUBTITLE_PROPERTY = "subtitle";
-    public final String DESCRIPTION_PROPERTY = "description";
-    public final String AUTHORS_PROPERTY = "authors";
-    public final String PUBLISH_DATE_PROPERTY = "publishedDate";
-    public final String CATEGORIES_PROPERTY = "categories";
-    public final String IMAGE_LINKS_PROPERTY = "imageLinks";
-    public final String THUMBNAIL_PROPERTY = "thumbnail";
-    public final String INDUSTRY_IDENTIFIERS_PROPERTY = "industryIdentifiers";
-    public final String TYPE_PROPERTY = "type";
-    public final String ISBN_13_PROPERTY = "ISBN_13";
-    public final String ISBN_10_PROPERTY = "ISBN_10";
-    public final String IDENTIFIER_PROPERTY = "identifier";
+    public static final String ITEMS_PROPERTY = "items";
+    public static final String VOLUME_INFO_PROPERTY = "volumeInfo";
+    public static final String ID_PROPERTY = "id";
+    public static final String TITLE_PROPERTY = "title";
+    public static final String SUBTITLE_PROPERTY = "subtitle";
+    public static final String DESCRIPTION_PROPERTY = "description";
+    public static final String AUTHORS_PROPERTY = "authors";
+    public static final String PUBLISH_DATE_PROPERTY = "publishedDate";
+    public static final String CATEGORIES_PROPERTY = "categories";
+    public static final String IMAGE_LINKS_PROPERTY = "imageLinks";
+    public static final String THUMBNAIL_PROPERTY = "thumbnail";
+    public static final String INDUSTRY_IDENTIFIERS_PROPERTY = "industryIdentifiers";
+    public static final String TYPE_PROPERTY = "type";
+    public static final String ISBN_13_PROPERTY = "ISBN_13";
+    public static final String ISBN_10_PROPERTY = "ISBN_10";
+    public static final String IDENTIFIER_PROPERTY = "identifier";
 
     @Override
     public List<Book> getBooksByName(String name) {
@@ -42,12 +42,12 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public Book getBookByGoogleId(String googleId) {
         // TODO La busqueda por google id no esta trayendo categories, ver que puede estar pasando
-//        return parseNode(GoogleUtils.searchVolumeByGoogleId(googleId));
+        // return parseNode(GoogleUtils.searchVolumeByGoogleId(googleId));
         return parseGoogleResponse(GoogleUtils.searchVolumeByAnyText(googleId)).get(0);
     }
 
     private List<Book> parseGoogleResponse(JsonNode root) {
-        return (List<Book>) StreamSupport.stream(root.path(ITEMS_PROPERTY).spliterator(), false)
+        return StreamSupport.stream(root.path(ITEMS_PROPERTY).spliterator(), false)
                 .map(this::parseNode)
                 .collect(Collectors.toList());
     }

@@ -32,6 +32,7 @@ public class Book {
     @Column(name = "synopsis")
     private String synopsis;
 
+    //TODO PUEDEN SER MAS DE UN AUTHOR
     @ManyToOne
     @JoinColumn(name = "idauthor")
     private Author author;
@@ -39,6 +40,7 @@ public class Book {
     @Column(name = "publicationdate")
     private Date publicationDate;
 
+    //TODO PUEDE TENER MAS CATEGORIAS
     @ManyToOne
     @JoinColumn(name = "idcategory")
     private Category category;
