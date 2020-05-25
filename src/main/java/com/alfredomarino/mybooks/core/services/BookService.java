@@ -6,9 +6,11 @@ public interface BookService {
 
     Book create(Book book);
 
-    Book createByGoogleId(String idGoogle) throws Exception;
+    Book createByGoogleId(String googleId);
 
-    Book getBookByGoogleId(String idGoogle);
+    Book getBookByGoogleId(String googleId);
 
-    Book getBookOrCreateIfNotExist(Book book) throws Exception;
+    Book getOrCreateBookIfNotExist(String googleId);
+
+    Book getBookOrCreateIfNotExist(Book book);
 }

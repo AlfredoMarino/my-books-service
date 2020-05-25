@@ -1,5 +1,6 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
+import com.alfredomarino.mybooks.core.model.Person;
 import com.alfredomarino.mybooks.core.repository.LibraryRepository;
 import com.alfredomarino.mybooks.core.services.BookService;
 import com.alfredomarino.mybooks.core.services.LibraryService;
@@ -29,25 +30,24 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public Library create(Library library) throws Exception {
+    public Library create(Long personId, String googleId, Library library) {
         System.out.println(library);
-        if (!this.personService.existsById(library.getPerson().getIdPerson())) {
-            throw new Exception("The person does not exist");
-        }
 
-        Book newBook = this.bookService.getBookOrCreateIfNotExist(library.getBook());
+        Person person = this.personService.findById(personId);
+
+        Book newBook = this.bookService.getOrCreateBookIfNotExist(googleId);
         if (newBook == null) {
-            throw new Exception("The book could not be found or created");
+            throw new RuntimeException("The book could not be found or created");
         }
 
+        library.setPerson(person);
         library.setBook(newBook);
 
         return this.libraryRepository.save(library);
     }
 
     @Override
-    public List<Library> findByPersonId(int idPerson) {
-        //return this.libraryRepository.findLibraryByIdPerson(idPerson);
-        return this.libraryRepository.findAll();
+    public List<Library> findByPersonId(Long personId) {
+        return this.libraryRepository.findByPersonIdPerson(personId);
     }
 }

@@ -41,10 +41,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book createByGoogleId(String idGoogle) throws Exception {
+    public Book createByGoogleId(String idGoogle) {
 
         if (this.bookRepository.findAllByIdGoogle(idGoogle) != null){
-            throw new Exception("Book already exists");
+            throw new RuntimeException("Book already exists");
         }
 
         return this.create(this.searchService.getBookByGoogleId(idGoogle));
@@ -56,10 +56,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book getBookOrCreateIfNotExist(Book book) throws Exception {
+    public Book getOrCreateBookIfNotExist(String googleId) {
+        Book book = this.getBookByGoogleId(googleId);
+        if (book == null) {
+            book = this.createByGoogleId(googleId);
+        }
+        return book;
+    }
+
+    @Override
+    public Book getBookOrCreateIfNotExist(Book book) {
 
         if (book.getIdBook() == null && book.getIdGoogle() == null) {
-            throw new Exception("The book has no identifiers to search for it");
+            throw new RuntimeException("The book has no identifiers to search for it");
         }
         Book newBook = null;
 

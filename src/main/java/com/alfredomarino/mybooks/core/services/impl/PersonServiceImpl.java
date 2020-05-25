@@ -23,6 +23,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public Person findById(Long personId) {
+        return this.personRepository.findById(personId).orElseThrow(RuntimeException::new);
+    }
+
+    @Override
     public boolean existsById(Long idPerson) {
         return this.personRepository.existsById(idPerson);
     }

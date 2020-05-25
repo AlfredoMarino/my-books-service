@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LibraryService {
 
-    Library create(Library library) throws Exception;
+    Library create(Long personId, String googleId, Library library);
 
-    List<Library> findByPersonId(int idPerson);
+    List<Library> findByPersonId(Long personId);
 }
