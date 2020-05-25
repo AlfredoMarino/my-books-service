@@ -2,7 +2,7 @@ package com.alfredomarino.mybooks.core.model;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+//TODO REVISAR SI ESTO ES NECESARIO
 public class LibraryId implements Serializable {
 
     private Long person;

@@ -23,7 +23,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findById(Long personId) {
+    public Person getPersonById(Long personId) {
         return this.personRepository.findById(personId).orElseThrow(RuntimeException::new);
     }
 
@@ -33,7 +33,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findAllByNameOrLastname(String name, String lastname){
+    public List<Person> getPersonsByNameOrLastname(String name, String lastname){
         return this.personRepository.findAllByNameOrLastname(name, lastname);
     }
 

@@ -23,12 +23,7 @@ public class RegionServiceImpl implements RegionService {
     }
 
     @Override
-    public List<Region> findAll(){
-        return this.regionRepository.findAll();
-    }
-
-    @Override
-    public List<Region> findByCountryId(Long countryId) {
+    public List<Region> getRegionsByCountryId(Long countryId) {
         return this.regionRepository.findByCountryIdCountry(countryId);
     }
 }

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface PersonService {
 
-    Person findById(Long personId);
+    Person getPersonById(Long personId);
 
     boolean existsById(Long idPerson);
 
-    List<Person> findAllByNameOrLastname(String name, String lastname);
+    List<Person> getPersonsByNameOrLastname(String name, String lastname);
 
     Person create(Person person);
 }

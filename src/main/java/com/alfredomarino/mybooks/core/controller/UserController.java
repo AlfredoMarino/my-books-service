@@ -25,7 +25,7 @@ public class UserController {
         @RequestParam(value="password") String password) {
         
 
-        return new ResponseEntity<>(this.userService.findByUserNameAndPassword(userName, password), HttpStatus.OK);
+        return new ResponseEntity<>(this.userService.getUserByUserNameAndPassword(userName, password), HttpStatus.OK);
     }
 
     @PostMapping

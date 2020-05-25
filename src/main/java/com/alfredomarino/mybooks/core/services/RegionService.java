@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface RegionService {
 
-    List<Region> findAll();
-
-    List<Region> findByCountryId(Long countryId);
+    List<Region> getRegionsByCountryId(Long countryId);
 }

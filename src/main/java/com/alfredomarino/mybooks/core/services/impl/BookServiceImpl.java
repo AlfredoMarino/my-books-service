@@ -1,10 +1,7 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
 import com.alfredomarino.mybooks.core.repository.BookRepository;
-import com.alfredomarino.mybooks.core.services.AuthorService;
-import com.alfredomarino.mybooks.core.services.BookService;
-import com.alfredomarino.mybooks.core.services.CategoryService;
-import com.alfredomarino.mybooks.core.services.SearchService;
+import com.alfredomarino.mybooks.core.services.*;
 import com.alfredomarino.mybooks.core.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

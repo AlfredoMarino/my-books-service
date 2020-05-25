@@ -33,12 +33,12 @@ public class CountryController {
 
     @GetMapping
     public ResponseEntity<List<Country>> getCountries(){
-        return new ResponseEntity<>(this.countryService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(this.countryService.getCountries(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{countryId}/regions")
     public ResponseEntity<List<Region>> getRegionsByCountryId(@PathVariable Long countryId){
-        return new ResponseEntity<>(this.regionService.findByCountryId(countryId), HttpStatus.OK);
+        return new ResponseEntity<>(this.regionService.getRegionsByCountryId(countryId), HttpStatus.OK);
     }
     
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LibraryServiceImpl implements LibraryService {
@@ -33,7 +34,7 @@ public class LibraryServiceImpl implements LibraryService {
     public Library create(Long personId, String googleId, Library library) {
         System.out.println(library);
 
-        Person person = this.personService.findById(personId);
+        Person person = this.personService.getPersonById(personId);
 
         Book newBook = this.bookService.getOrCreateBookIfNotExist(googleId);
         if (newBook == null) {
@@ -47,7 +48,13 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public List<Library> findByPersonId(Long personId) {
+    public List<Library> getLibrariesByPersonId(Long personId) {
         return this.libraryRepository.findByPersonIdPerson(personId);
+    }
+
+    @Override
+    public List<Book> getBooksByPersonId(Long personId) {
+        List<Library> libraries = this.getLibrariesByPersonId(personId);
+        return libraries.stream().map(Library::getBook).collect(Collectors.toList());
     }
 }
