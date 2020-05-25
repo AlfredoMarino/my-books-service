@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.alfredomarino.mybooks.core.model.Book;
 import com.alfredomarino.mybooks.core.model.Library;
-import com.alfredomarino.mybooks.core.services.BookService;
 import com.alfredomarino.mybooks.core.services.LibraryService;
 import com.alfredomarino.mybooks.core.services.PersonService;
 import com.alfredomarino.mybooks.core.model.Person;
