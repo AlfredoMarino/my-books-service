@@ -49,7 +49,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public List<Library> getLibrariesByPersonId(Long personId) {
-        return this.libraryRepository.findByPersonIdPerson(personId);
+        return this.libraryRepository.findByPersonPersonId(personId);
     }
 
     @Override

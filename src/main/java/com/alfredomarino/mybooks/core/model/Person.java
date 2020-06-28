@@ -16,7 +16,7 @@ public class Person {
     @Id
     @Column(name = "idperson")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idPerson;
+    private Long personId;
 
     @OneToOne
     @JoinColumn(name = "iduser", referencedColumnName = "iduser", unique = true)
@@ -27,7 +27,7 @@ public class Person {
     private String name;
 
     @Column(name = "lastname")
-    private String lastname;
+    private String lastName;
 
     @Column(name = "birthdate")
     private Date birthdate;
@@ -54,23 +54,18 @@ public class Person {
     @Column(name = "photo")
     private String photo;
 
-
-    public Person() {
-        
+    /**
+     * @return the personId
+     */
+    public Long getPersonId() {
+        return personId;
     }
 
     /**
-     * @return the idPerson
+     * @param personId the personId to set
      */
-    public Long getIdPerson() {
-        return idPerson;
-    }
-
-    /**
-     * @param idPerson the idPerson to set
-     */
-    public void setIdPerson(Long idPerson) {
-        this.idPerson = idPerson;
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
     /**
@@ -102,17 +97,17 @@ public class Person {
     }
 
     /**
-     * @return the lastname
+     * @return the lastName
      */
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
     /**
-     * @param lastname the lastname to set
+     * @param lastName the lastName to set
      */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**
@@ -216,10 +211,10 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "idPerson=" + idPerson +
+                "personId=" + personId +
                 ", user=" + user +
                 ", name='" + name + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 ", nativeCountry=" + nativeCountry +
                 ", nativeRegion=" + nativeRegion +
