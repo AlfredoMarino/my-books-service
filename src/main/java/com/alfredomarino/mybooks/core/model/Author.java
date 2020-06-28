@@ -17,7 +17,7 @@ public class Author {
     @Id
     @Column(name = "idauthor")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idAuthor;
+    private Long authorId;
 
     @Column(name = "name")
     private String name;
@@ -31,17 +31,17 @@ public class Author {
     }
 
     /**
-     * @return the idAuthor
+     * @return the authorId
      */
-    public Long getIdAuthor() {
-        return idAuthor;
+    public Long getAuthorId() {
+        return authorId;
     }
 
     /**
-     * @param idAuthor the idAuthor to set
+     * @param authorId the authorId to set
      */
-    public void setIdAuthor(Long idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     /**
@@ -61,7 +61,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "idAuthor=" + idAuthor +
+                "authorId=" + authorId +
                 ", name='" + name + '\'' +
                 '}';
     }
