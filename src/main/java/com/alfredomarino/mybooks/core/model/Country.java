@@ -23,7 +23,7 @@ public class Country {
     @Id
     @Column(name = "idcountry")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idCountry;
+    private Long countryId;
 
     @Column(name = "name")
     private String name;
@@ -32,23 +32,18 @@ public class Country {
     @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private Set<Region> regions;
 
-    public Country() {
-        
-    }
-
-
     /**
-     * @return the idCountry
+     * @return the countryId
      */
-    public Long getIdCountry() {
-        return idCountry;
+    public Long getCountryId() {
+        return countryId;
     }
 
     /**
-     * @param idCountry the idCountry to set
+     * @param countryId the countryId to set
      */
-    public void setIdCountry(Long idCountry) {
-        this.idCountry = idCountry;
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
     }
 
     /**
@@ -82,7 +77,7 @@ public class Country {
     @Override
     public String toString() {
         return "Country{" +
-                "idCountry=" + idCountry +
+                "countryId=" + countryId +
                 ", name='" + name + '\'' +
                 ", regions=" + regions +
                 '}';
