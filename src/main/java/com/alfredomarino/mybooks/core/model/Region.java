@@ -21,7 +21,7 @@ public class Region {
     @Id
     @Column(name = "idregion")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idRegion;
+    private Long regionId;
 
     @ManyToOne
     @JoinColumn(name = "idcountry")
@@ -31,22 +31,18 @@ public class Region {
     @Column(name = "name")
     private String name;
 
-    public Region() {
-        
+    /**
+     * @return the regionId
+     */
+    public Long getRegionId() {
+        return regionId;
     }
 
     /**
-     * @return the idRegion
+     * @param regionId the regionId to set
      */
-    public Long getIdRegion() {
-        return idRegion;
-    }
-
-    /**
-     * @param idRegion the idRegion to set
-     */
-    public void setIdRegion(Long idRegion) {
-        this.idRegion = idRegion;
+    public void setRegionId(Long regionId) {
+        this.regionId = regionId;
     }
 
 
@@ -82,7 +78,7 @@ public class Region {
     @Override
     public String toString() {
         return "Region{" +
-                "idRegion=" + idRegion +
+                "regionId=" + regionId +
                 ", country=" + country +
                 ", name='" + name + '\'' +
                 '}';
