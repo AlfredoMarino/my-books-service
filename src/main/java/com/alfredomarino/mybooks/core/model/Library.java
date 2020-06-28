@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Library {
 
     @Id
-    //@JsonIgnore
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "idperson")
     private Person person;
