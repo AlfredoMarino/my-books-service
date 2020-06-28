@@ -60,7 +60,7 @@ public class SearchServiceImpl implements SearchService {
         String synopsis = volumeNode.path(DESCRIPTION_PROPERTY).asText();
 
         List<String> authorNames = volumeNodeIteratorToList(volumeNode, AUTHORS_PROPERTY);
-        Author author = authorNames.size() > 0 ? new Author(authorNames.get(0)) : null;
+        Author author = !authorNames.isEmpty() ? new Author(authorNames.get(0)) : null;
 
         String dateString = volumeNode.path(PUBLISH_DATE_PROPERTY).asText();
         Date publishedDate = null;
@@ -69,7 +69,7 @@ public class SearchServiceImpl implements SearchService {
         }
 
         List<String> categoryNames = volumeNodeIteratorToList(volumeNode, CATEGORIES_PROPERTY);
-        Category category = categoryNames.size() > 0 ? new Category(null, categoryNames.get(0)) : null;
+        Category category = !categoryNames.isEmpty() ? new Category(null, categoryNames.get(0)) : null;
 
         String image = volumeNode.path(IMAGE_LINKS_PROPERTY).path(THUMBNAIL_PROPERTY).asText();
 
@@ -83,8 +83,21 @@ public class SearchServiceImpl implements SearchService {
             }
         }
 
-        String idGoogle = node.path(ID_PROPERTY).asText();
-        return new Book(title, subtitle, synopsis, author, publishedDate, category, image, isbn10, isbn13, idGoogle);
+        String googleId = node.path(ID_PROPERTY).asText();
+
+        Book book = new Book();
+        book.setTitle(title);
+        book.setSubtitle(subtitle);
+        book.setSynopsis(synopsis);
+        book.setAuthor(author);
+        book.setPublicationDate(publishedDate);
+        book.setCategory(category);
+        book.setImage(image);
+        book.setIsbn10(isbn10);
+        book.setIsbn13(isbn13);
+        book.setGoogleId(googleId);
+
+        return book;
     }
 
     private List<String> volumeNodeIteratorToList(JsonNode node, String path) {

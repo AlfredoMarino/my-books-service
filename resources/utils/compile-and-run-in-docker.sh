@@ -8,4 +8,9 @@
 # ./resources/utils/compile-and-run-in-docker.sh
 
 mvn clean install -DskipTests
+
+# Solucion provicional para no acumular tantas imagenes <none>
+# Elimina todas las imagenes <none>
+docker rmi $(docker images -f dangling=true -q)
+
 docker-compose -f ./resources/docker/docker-compose.yml up --build

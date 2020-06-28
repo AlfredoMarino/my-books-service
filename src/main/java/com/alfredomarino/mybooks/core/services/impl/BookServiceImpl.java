@@ -38,18 +38,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book createByGoogleId(String idGoogle) {
+    public Book createByGoogleId(String googleId) {
 
-        if (this.bookRepository.findAllByIdGoogle(idGoogle) != null){
+        if (this.bookRepository.findByGoogleId(googleId) != null){
             throw new RuntimeException("Book already exists");
         }
 
-        return this.create(this.searchService.getBookByGoogleId(idGoogle));
+        return this.create(this.searchService.getBookByGoogleId(googleId));
     }
 
     @Override
-    public Book getBookByGoogleId(String idGoogle) {
-        return this.bookRepository.findAllByIdGoogle(idGoogle);
+    public Book getBookByGoogleId(String googleId) {
+        return this.bookRepository.findByGoogleId(googleId);
     }
 
     @Override
@@ -64,19 +64,19 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book getBookOrCreateIfNotExist(Book book) {
 
-        if (book.getIdBook() == null && book.getIdGoogle() == null) {
+        if (book.getBookId() == null && book.getGoogleId() == null) {
             throw new RuntimeException("The book has no identifiers to search for it");
         }
         Book newBook = null;
 
-        if (book.getIdBook() != null) {
-            newBook = this.bookRepository.findById(book.getIdBook()).orElse(null);
+        if (book.getBookId() != null) {
+            newBook = this.bookRepository.findById(book.getBookId()).orElse(null);
         }
 
         if (newBook == null) {
-            newBook = this.getBookByGoogleId(book.getIdGoogle());
+            newBook = this.getBookByGoogleId(book.getGoogleId());
             if (newBook == null) {
-                newBook = this.createByGoogleId(book.getIdGoogle());
+                newBook = this.createByGoogleId(book.getGoogleId());
             }
         }
 

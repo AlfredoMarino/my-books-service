@@ -21,7 +21,7 @@ public class Book {
     @Id
     @Column(name = "idbook")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idBook;
+    private Long bookId;
 
     @Column(name = "title")
     private String title;
@@ -55,37 +55,20 @@ public class Book {
     private String isbn13;
 
     @Column(name = "idgoogle")
-    private String idGoogle;
+    private String googleId;
 
-    public Book() {
-        
-    }
-
-    public Book(String title, String subtitle, String synopsis, Author author, Date publicationDate, Category category, String image, String isbn10, String isbn13, String idGoogle) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.synopsis = synopsis;
-        this.author = author;
-        this.publicationDate = publicationDate;
-        this.category = category;
-        this.image = image;
-        this.isbn10 = isbn10;
-        this.isbn13 = isbn13;
-        this.idGoogle = idGoogle;
+    /**
+     * @return the bookId
+     */
+    public Long getBookId() {
+        return bookId;
     }
 
     /**
-     * @return the idBook
+     * @param bookId the bookId to set
      */
-    public Long getIdBook() {
-        return idBook;
-    }
-
-    /**
-     * @param idBook the idBook to set
-     */
-    public void setIdBook(Long idBook) {
-        this.idBook = idBook;
+    public void setBookId(Long bookId) {
+        this.bookId = bookId;
     }
 
     /**
@@ -215,23 +198,23 @@ public class Book {
     }
 
     /**
-     * @return the idGoogle
+     * @return the googleId
      */
-    public String getIdGoogle() {
-        return idGoogle;
+    public String getGoogleId() {
+        return googleId;
     }
 
     /**
-     * @param idGoogle the idGoogle to set
+     * @param googleId the googleId to set
      */
-    public void setIdGoogle(String idGoogle) {
-        this.idGoogle = idGoogle;
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "idBook=" + idBook +
+                "bookId=" + bookId +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", synopsis='" + synopsis + '\'' +
@@ -241,7 +224,7 @@ public class Book {
                 ", image='" + image + '\'' +
                 ", isbn10='" + isbn10 + '\'' +
                 ", isbn13='" + isbn13 + '\'' +
-                ", idGoogle='" + idGoogle + '\'' +
+                ", googleId='" + googleId + '\'' +
                 '}';
     }
 }
