@@ -30,7 +30,7 @@ public class Book {
     private String subtitle;
 
     @Column(name = "synopsis")
-    private String synopsis;
+    private String description;
 
     //TODO PUEDEN SER MAS DE UN AUTHOR
     @ManyToOne
@@ -100,17 +100,17 @@ public class Book {
     }
 
     /**
-     * @return the synopsis
+     * @return the description
      */
-    public String getSynopsis() {
-        return synopsis;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param synopsis the synopsis to set
+     * @param description the description to set
      */
-    public void setSynopsis(String synopsis) {
-        this.synopsis = synopsis;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -217,7 +217,7 @@ public class Book {
                 "bookId=" + bookId +
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
-                ", synopsis='" + synopsis + '\'' +
+                ", description='" + description + '\'' +
                 ", author=" + author +
                 ", publicationDate=" + publicationDate +
                 ", category=" + category +

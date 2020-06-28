@@ -57,7 +57,7 @@ public class SearchServiceImpl implements SearchService {
 
         String title = volumeNode.path(TITLE_PROPERTY).asText();
         String subtitle = volumeNode.path(SUBTITLE_PROPERTY).asText();
-        String synopsis = volumeNode.path(DESCRIPTION_PROPERTY).asText();
+        String description = volumeNode.path(DESCRIPTION_PROPERTY).asText();
 
         List<String> authorNames = volumeNodeIteratorToList(volumeNode, AUTHORS_PROPERTY);
         Author author = !authorNames.isEmpty() ? new Author(authorNames.get(0)) : null;
@@ -88,7 +88,7 @@ public class SearchServiceImpl implements SearchService {
         Book book = new Book();
         book.setTitle(title);
         book.setSubtitle(subtitle);
-        book.setSynopsis(synopsis);
+        book.setDescription(description);
         book.setAuthor(author);
         book.setPublicationDate(publishedDate);
         book.setCategory(category);
