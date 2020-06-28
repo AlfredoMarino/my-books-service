@@ -5,13 +5,11 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "user")
@@ -20,7 +18,7 @@ public class User {
     @Id
     @Column(name = "iduser")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idUser;
+    private Long userId;
 
     @Column(name = "username")
     private String userName;
@@ -37,22 +35,18 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Person person;
 
-    public User() {
-
+    /**
+     * @return the userId
+     */
+    public Long getUserId() {
+        return userId;
     }
 
     /**
-     * @return the idUser
+     * @param userId the userId to set
      */
-    public Long getIdUser() {
-        return idUser;
-    }
-
-    /**
-     * @param idUser the idUser to set
-     */
-    public void setIdUser(Long idUser) {
-        this.idUser = idUser;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     /**
@@ -129,7 +123,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "idUser=" + idUser +
+                "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", userState=" + userState +
