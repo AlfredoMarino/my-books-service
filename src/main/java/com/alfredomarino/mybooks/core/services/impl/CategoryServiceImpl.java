@@ -20,15 +20,11 @@ public class CategoryServiceImpl implements CategoryService {
     public Category createIfNotExist(Category category) {
         Category savedCategory = null;
 
-        if (category.getEnglishName() == null && category.getName() == null) {
+        if (category.getName() == null) {
             // TODO manejo de erroes
             System.out.println("Category invalid");
             return null;
-        }
-        if (category.getEnglishName() != null) {
-            savedCategory = this.categoryRepository.findByEnglishName(category.getEnglishName());
-        }
-        if (savedCategory == null && category.getName() != null) {
+        } else {
             savedCategory = this.categoryRepository.findByName(category.getName());
         }
         return (savedCategory != null) ? savedCategory : this.categoryRepository.save(category);

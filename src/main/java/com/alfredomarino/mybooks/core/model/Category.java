@@ -17,35 +17,30 @@ public class Category {
     @Id
     @Column(name = "idcategory")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long idCategory;
+    private Long categoryId;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "englishname")
-    private String englishName;
-
     public Category() {
-        
     }
 
-    public Category(String name, String englishName) {
+    public Category(String name) {
         this.name = name;
-        this.englishName = englishName;
     }
 
     /**
-     * @return the idCategory
+     * @return the categoryId
      */
-    public Long getIdCategory() {
-        return idCategory;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     /**
-     * @param idCategory the idCategory to set
+     * @param categoryId the categoryId to set
      */
-    public void setIdCategory(Long idCategory) {
-        this.idCategory = idCategory;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     /**
@@ -62,26 +57,11 @@ public class Category {
         this.name = name;
     }
 
-    /**
-     * @return the englishName
-     */
-    public String getEnglishName() {
-        return englishName;
-    }
-
-    /**
-     * @param englishName the englishName to set
-     */
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
-    }
-
     @Override
     public String toString() {
         return "Category{" +
-                "idCategory=" + idCategory +
+                "categoryId=" + categoryId +
                 ", name='" + name + '\'' +
-                ", englishName='" + englishName + '\'' +
                 '}';
     }
 }

@@ -69,7 +69,7 @@ public class SearchServiceImpl implements SearchService {
         }
 
         List<String> categoryNames = volumeNodeIteratorToList(volumeNode, CATEGORIES_PROPERTY);
-        Category category = !categoryNames.isEmpty() ? new Category(null, categoryNames.get(0)) : null;
+        Category category = !categoryNames.isEmpty() ? new Category(categoryNames.get(0)) : null;
 
         String image = volumeNode.path(IMAGE_LINKS_PROPERTY).path(THUMBNAIL_PROPERTY).asText();
 
