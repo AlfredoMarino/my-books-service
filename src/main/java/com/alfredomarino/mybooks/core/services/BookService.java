@@ -10,7 +10,9 @@ public interface BookService {
 
     Book getBookByGoogleId(String googleId);
 
+    Book getBookById(Long bookId);
+
     Book getOrCreateBookIfNotExist(String googleId);
 
-    Book getBookOrCreateIfNotExist(Book book);
+    void delete(Long bookId);
 }

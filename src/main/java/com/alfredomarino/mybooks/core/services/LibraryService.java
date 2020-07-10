@@ -12,4 +12,7 @@ public interface LibraryService {
     List<Library> getLibrariesByPersonId(Long personId);
 
     List<Book> getBooksByPersonId(Long personId);
+
+    void delete(Long personId, Long bookId);
+
 }

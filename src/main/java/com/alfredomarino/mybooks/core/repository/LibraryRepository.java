@@ -11,4 +11,7 @@ import java.util.List;
 public interface LibraryRepository extends JpaRepository<Library, LibraryId> {
 
     List<Library> findByPersonPersonId(Long personId);
+
+    List<Library> findByBookBookId(Long bookId);
+
 }
