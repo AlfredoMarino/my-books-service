@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
     public AuthorServiceImpl(AuthorRepository authorRepository) {
@@ -17,7 +17,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author createIfNotExist(Author author){
+    public Author createAuthorIfNotExist(Author author){
         Author savedAuthor = this.authorRepository.findAuthorByName(author.getName());
         return (savedAuthor != null) ? savedAuthor : this.authorRepository.save(author);
     }

@@ -7,12 +7,11 @@ import java.util.List;
 
 public interface LibraryService {
 
-    Library create(Long personId, String googleId, Library library);
+    Library createLibrary(Long personId, String googleId, Library library);
 
     List<Library> getLibrariesByPersonId(Long personId);
 
     List<Book> getBooksByPersonId(Long personId);
 
-    void delete(Long personId, Long bookId);
-
+    void deleteLibrary(Long personId, Long bookId);
 }

@@ -29,7 +29,7 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public Library create(Long personId, String googleId, Library library) {
+    public Library createLibrary(Long personId, String googleId, Library library) {
         System.out.println(library);
 
         Person person = this.personService.getPersonById(personId);
@@ -57,11 +57,11 @@ public class LibraryServiceImpl implements LibraryService {
     }
 
     @Override
-    public void delete(Long personId, Long bookId) {
+    public void deleteLibrary(Long personId, Long bookId) {
         this.libraryRepository.deleteById(new LibraryId(personId, bookId));
 
         if (this.libraryRepository.findByBookBookId(bookId).isEmpty()) {
-            this.bookService.delete(bookId);
+            this.bookService.deleteBook(bookId);
         }
     }
 }

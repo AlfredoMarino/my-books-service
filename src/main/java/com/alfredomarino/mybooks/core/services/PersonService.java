@@ -8,9 +8,5 @@ public interface PersonService {
 
     Person getPersonById(Long personId);
 
-    boolean existsById(Long idPerson);
-
-    List<Person> getPersonsByNameOrLastname(String name, String lastname);
-
-    Person create(Person person);
+    List<Person> getPersonsByNameOrLastName(String name, String lastName);
 }

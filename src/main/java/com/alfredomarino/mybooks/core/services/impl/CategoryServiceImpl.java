@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public CategoryServiceImpl(CategoryRepository categoryRepository) {
@@ -17,8 +17,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createIfNotExist(Category category) {
-        Category savedCategory = null;
+    public Category createCategoryIfNotExist(Category category) {
+        Category savedCategory;
 
         if (category.getName() == null) {
             // TODO manejo de erroes

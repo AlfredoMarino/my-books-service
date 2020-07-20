@@ -26,24 +26,19 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book create(Book book) {
-        System.out.println("book antes ===============================> " + book);
-
-        book.setAuthor(this.authorService.createIfNotExist(book.getAuthor()));
-
-        book.setCategory(this.categoryService.createIfNotExist(book.getCategory()));
-
-        System.out.println("book despues ===============================> " + book);
+    public Book createBook(Book book) {
+        book.setAuthor(this.authorService.createAuthorIfNotExist(book.getAuthor()));
+        book.setCategory(this.categoryService.createCategoryIfNotExist(book.getCategory()));
         return this.bookRepository.save(book);
     }
 
     @Override
-    public Book createByGoogleId(String googleId) {
+    public Book createBook(String googleId) {
         if (this.bookRepository.findByGoogleId(googleId) != null){
             throw new RuntimeException("Book already exists");
         }
 
-        return this.create(this.searchService.getBookByGoogleId(googleId));
+        return this.createBook(this.searchService.getBookByGoogleId(googleId));
     }
 
     @Override
@@ -60,13 +55,13 @@ public class BookServiceImpl implements BookService {
     public Book getOrCreateBookIfNotExist(String googleId) {
         Book book = this.getBookByGoogleId(googleId);
         if (book == null) {
-            book = this.createByGoogleId(googleId);
+            book = this.createBook(googleId);
         }
         return book;
     }
 
     @Override
-    public void delete(Long bookId) {
+    public void deleteBook(Long bookId) {
         Book book = this.getBookById(bookId);
         this.bookRepository.delete(book);
     }
