@@ -23,8 +23,6 @@ public class UserController {
     public ResponseEntity<User> getUser(
         @RequestParam(value="userName") String userName, 
         @RequestParam(value="password") String password) {
-        
-
         return new ResponseEntity<>(this.userService.getUserByUserNameAndPassword(userName, password), HttpStatus.OK);
     }
 
