@@ -52,15 +52,6 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book getOrCreateBookIfNotExist(String googleId) {
-        Book book = this.getBookByGoogleId(googleId);
-        if (book == null) {
-            book = this.createBook(googleId);
-        }
-        return book;
-    }
-
-    @Override
     public void deleteBook(Long bookId) {
         Book book = this.getBookById(bookId);
         this.bookRepository.delete(book);

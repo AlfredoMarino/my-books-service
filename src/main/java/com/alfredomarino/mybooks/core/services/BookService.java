@@ -12,7 +12,5 @@ public interface BookService {
 
     Book getBookById(Long bookId);
 
-    Book getOrCreateBookIfNotExist(String googleId);
-
     void deleteBook(Long bookId);
 }

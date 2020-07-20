@@ -1,7 +1,6 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
 import com.alfredomarino.mybooks.core.model.LibraryId;
-import com.alfredomarino.mybooks.core.model.Person;
 import com.alfredomarino.mybooks.core.repository.LibraryRepository;
 import com.alfredomarino.mybooks.core.services.BookService;
 import com.alfredomarino.mybooks.core.services.LibraryService;
@@ -30,18 +29,8 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Library createLibrary(Long personId, String googleId, Library library) {
-        System.out.println(library);
-
-        Person person = this.personService.getPersonById(personId);
-
-        Book newBook = this.bookService.getOrCreateBookIfNotExist(googleId);
-        if (newBook == null) {
-            throw new RuntimeException("The book could not be found or created");
-        }
-
-        library.setPerson(person);
-        library.setBook(newBook);
-
+        library.setPerson(this.personService.getPersonById(personId));
+        library.setBook(this.getOrCreateBook(googleId));
         return this.libraryRepository.save(library);
     }
 
@@ -63,5 +52,16 @@ public class LibraryServiceImpl implements LibraryService {
         if (this.libraryRepository.findByBookBookId(bookId).isEmpty()) {
             this.bookService.deleteBook(bookId);
         }
+    }
+
+    private Book getOrCreateBook(String googleId) {
+        Book book = this.bookService.getBookByGoogleId(googleId);
+        if (book == null) {
+            book = this.bookService.createBook(googleId);
+        }
+        if (book == null) {
+            throw new RuntimeException("The book could not be found or created");
+        }
+        return book;
     }
 }
