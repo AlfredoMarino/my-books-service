@@ -8,7 +8,6 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.books.Books;
 import com.google.api.services.books.model.Volumes;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -18,7 +17,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Primary
 public class SearchServiceImpl implements SearchService {
 
     private final Books googleBooksClient;
