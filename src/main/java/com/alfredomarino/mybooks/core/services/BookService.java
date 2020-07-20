@@ -4,13 +4,13 @@ import com.alfredomarino.mybooks.core.model.Book;
 
 public interface BookService {
 
-    Book create(Book book);
+    Book createBook(Book book);
 
-    Book createByGoogleId(String googleId);
+    Book createBook(String googleId);
 
     Book getBookByGoogleId(String googleId);
 
-    Book getOrCreateBookIfNotExist(String googleId);
+    Book getBookById(Long bookId);
 
-    Book getBookOrCreateIfNotExist(Book book);
+    void deleteBook(Long bookId);
 }

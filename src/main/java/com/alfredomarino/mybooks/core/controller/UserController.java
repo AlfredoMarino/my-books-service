@@ -23,8 +23,6 @@ public class UserController {
     public ResponseEntity<User> getUser(
         @RequestParam(value="userName") String userName, 
         @RequestParam(value="password") String password) {
-        
-
         return new ResponseEntity<>(this.userService.getUserByUserNameAndPassword(userName, password), HttpStatus.OK);
     }
 
@@ -32,7 +30,7 @@ public class UserController {
     public ResponseEntity<User> create(@RequestBody User user) {
         Person person = user.getPerson();
         person.setUser(user);
-        return new ResponseEntity<>(this.userService.create(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.userService.createUser(user), HttpStatus.CREATED);
     }
     
 }

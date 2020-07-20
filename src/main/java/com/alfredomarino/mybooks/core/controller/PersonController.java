@@ -26,6 +26,6 @@ public class PersonController {
 
     @GetMapping
     public ResponseEntity<List<Person>>  getPersonByNameOrLastname(@RequestParam String name, @RequestParam String lastname) {
-        return new ResponseEntity<>(this.personService.getPersonsByNameOrLastname(name, lastname), HttpStatus.OK);
+        return new ResponseEntity<>(this.personService.getPersonsByNameOrLastName(name, lastname), HttpStatus.OK);
     }
 }

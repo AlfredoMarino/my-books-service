@@ -1,11 +1,10 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
-import com.alfredomarino.mybooks.core.model.Person;
+import com.alfredomarino.mybooks.core.model.LibraryId;
 import com.alfredomarino.mybooks.core.repository.LibraryRepository;
 import com.alfredomarino.mybooks.core.services.BookService;
 import com.alfredomarino.mybooks.core.services.LibraryService;
 import com.alfredomarino.mybooks.core.services.PersonService;
-import com.alfredomarino.mybooks.core.services.SearchService;
 import com.alfredomarino.mybooks.core.model.Book;
 import com.alfredomarino.mybooks.core.model.Library;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +16,21 @@ import java.util.stream.Collectors;
 @Service
 public class LibraryServiceImpl implements LibraryService {
 
-    private LibraryRepository libraryRepository;
-    private SearchService searchService;
-    private BookService bookService;
-    private PersonService personService;
+    private final LibraryRepository libraryRepository;
+    private final BookService bookService;
+    private final PersonService personService;
 
     @Autowired
-    public LibraryServiceImpl(LibraryRepository libraryRepository, SearchService searchService, BookService bookService, PersonService personService) {
+    public LibraryServiceImpl(LibraryRepository libraryRepository, BookService bookService, PersonService personService) {
         this.libraryRepository = libraryRepository;
-        this.searchService = searchService;
         this.bookService = bookService;
         this.personService = personService;
     }
 
     @Override
-    public Library create(Long personId, String googleId, Library library) {
-        System.out.println(library);
-
-        Person person = this.personService.getPersonById(personId);
-
-        Book newBook = this.bookService.getOrCreateBookIfNotExist(googleId);
-        if (newBook == null) {
-            throw new RuntimeException("The book could not be found or created");
-        }
-
-        library.setPerson(person);
-        library.setBook(newBook);
-
+    public Library createLibrary(Long personId, String googleId, Library library) {
+        library.setPerson(this.personService.getPersonById(personId));
+        library.setBook(this.getOrCreateBook(googleId));
         return this.libraryRepository.save(library);
     }
 
@@ -56,5 +43,25 @@ public class LibraryServiceImpl implements LibraryService {
     public List<Book> getBooksByPersonId(Long personId) {
         List<Library> libraries = this.getLibrariesByPersonId(personId);
         return libraries.stream().map(Library::getBook).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteLibrary(Long personId, Long bookId) {
+        this.libraryRepository.deleteById(new LibraryId(personId, bookId));
+
+        if (this.libraryRepository.findByBookBookId(bookId).isEmpty()) {
+            this.bookService.deleteBook(bookId);
+        }
+    }
+
+    private Book getOrCreateBook(String googleId) {
+        Book book = this.bookService.getBookByGoogleId(googleId);
+        if (book == null) {
+            book = this.bookService.createBook(googleId);
+        }
+        if (book == null) {
+            throw new RuntimeException("The book could not be found or created");
+        }
+        return book;
     }
 }

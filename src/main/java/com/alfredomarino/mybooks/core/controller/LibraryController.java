@@ -36,6 +36,11 @@ public class LibraryController {
 
     @PostMapping(value = "/{googleId}")
     public ResponseEntity<Library> create(@PathVariable Long personId, @PathVariable String googleId, @RequestBody Library library) {
-        return new ResponseEntity<>(this.libraryService.create(personId, googleId, library), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.libraryService.createLibrary(personId, googleId, library), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/{bookId}")
+    public void delete(@PathVariable Long personId, @PathVariable Long bookId) {
+        this.libraryService.deleteLibrary(personId, bookId);
     }
 }

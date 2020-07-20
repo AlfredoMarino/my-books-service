@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonServiceImpl implements PersonService {
 
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
 
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository) {
@@ -28,17 +28,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public boolean existsById(Long idPerson) {
-        return this.personRepository.existsById(idPerson);
-    }
-
-    @Override
-    public List<Person> getPersonsByNameOrLastname(String name, String lastname){
-        return this.personRepository.findAllByNameOrLastName(name, lastname);
-    }
-
-    @Override
-    public Person create(Person person){
-        return this.personRepository.save(person);
+    public List<Person> getPersonsByNameOrLastName(String name, String lastName){
+        return this.personRepository.findAllByNameOrLastName(name, lastName);
     }
 }

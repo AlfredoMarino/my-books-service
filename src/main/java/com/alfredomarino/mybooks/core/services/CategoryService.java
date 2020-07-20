@@ -4,5 +4,5 @@ import com.alfredomarino.mybooks.core.model.Category;
 
 public interface CategoryService {
 
-    Category createIfNotExist(Category category);
+    Category createCategoryIfNotExist(Category category);
 }
