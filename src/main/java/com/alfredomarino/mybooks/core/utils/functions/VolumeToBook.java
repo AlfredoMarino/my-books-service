@@ -8,6 +8,7 @@ import com.google.api.services.books.model.Volume;
 
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class VolumeToBook implements Function<Volume, Book> {
 
@@ -25,7 +26,7 @@ public class VolumeToBook implements Function<Volume, Book> {
 
         List<String> authorNames = volume.getVolumeInfo().getAuthors();
         if (authorNames != null && !authorNames.isEmpty()) {
-            book.setAuthor(new Author(authorNames.get(0)));
+            book.setAuthors(volume.getVolumeInfo().getAuthors().stream().map(Author::new).collect(Collectors.toList()));
         }
         String publishedDate = volume.getVolumeInfo().getPublishedDate();
         if (publishedDate != null) {

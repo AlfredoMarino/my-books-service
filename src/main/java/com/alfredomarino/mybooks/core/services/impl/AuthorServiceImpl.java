@@ -17,8 +17,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author createAuthorIfNotExist(Author author){
-        Author savedAuthor = this.authorRepository.findAuthorByName(author.getName());
-        return (savedAuthor != null) ? savedAuthor : this.authorRepository.save(author);
+    public Author getAuthorByName(String name) {
+        return this.authorRepository.findAuthorByName(name);
     }
 }

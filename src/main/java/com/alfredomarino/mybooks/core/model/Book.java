@@ -1,15 +1,9 @@
 package com.alfredomarino.mybooks.core.model;
 
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Book
@@ -32,10 +26,13 @@ public class Book {
     @Column(name = "synopsis")
     private String description;
 
-    //TODO PUEDEN SER MAS DE UN AUTHOR
-    @ManyToOne
-    @JoinColumn(name = "idauthor")
-    private Author author;
+    @JoinTable(
+            name = "written",
+            joinColumns = @JoinColumn(name = "bookid", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "authorid", nullable = false)
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Author> authors;
 
     @Column(name = "publicationdate")
     private Date publicationDate;
@@ -114,17 +111,17 @@ public class Book {
     }
 
     /**
-     * @return the author
+     * @return the authors
      */
-    public Author getAuthor() {
-        return author;
+    public List<Author> getAuthors() {
+        return authors;
     }
 
     /**
-     * @param author the author to set
+     * @param authors the authors to set
      */
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
     }
 
     /**
@@ -218,7 +215,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", subtitle='" + subtitle + '\'' +
                 ", description='" + description + '\'' +
-                ", author=" + author +
+                ", authors=" + authors +
                 ", publicationDate=" + publicationDate +
                 ", category=" + category +
                 ", image='" + image + '\'' +
