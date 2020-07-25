@@ -4,5 +4,5 @@ import com.alfredomarino.mybooks.core.model.Author;
 
 public interface AuthorService {
 
-    Author createAuthorIfNotExist(Author author);
+    Author getAuthorByName(String name);
 }

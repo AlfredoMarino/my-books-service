@@ -1,10 +1,13 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
+import com.alfredomarino.mybooks.core.model.Author;
 import com.alfredomarino.mybooks.core.repository.BookRepository;
 import com.alfredomarino.mybooks.core.services.*;
 import com.alfredomarino.mybooks.core.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 /**
  * BookServiceImpl
@@ -27,7 +30,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book createBook(Book book) {
-        book.setAuthor(this.authorService.createAuthorIfNotExist(book.getAuthor()));
+        book.setAuthors(book.getAuthors().stream().map(author -> {
+            Author savedAuthor = this.authorService.getAuthorByName(author.getName());
+            return savedAuthor != null ? savedAuthor : author;
+        }).collect(Collectors.toList()));
         book.setCategory(this.categoryService.createCategoryIfNotExist(book.getCategory()));
         return this.bookRepository.save(book);
     }
