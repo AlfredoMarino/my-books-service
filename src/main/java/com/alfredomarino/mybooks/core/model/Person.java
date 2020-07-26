@@ -18,7 +18,7 @@ public class Person {
 
     @OneToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
     private String name;
     private String lastName;
