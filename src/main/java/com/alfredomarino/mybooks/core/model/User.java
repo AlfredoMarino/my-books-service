@@ -11,25 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * User
+ */
 @Entity
-@Table(name = "user")
 public class User {
 
     @Id
-    @Column(name = "iduser")
+    @Column(name = "user_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long userId;
 
     @Column(name = "username")
     private String userName;
-
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "userstate")
     private Short userState;
 
-    @Column(name = "creationdate", insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     private Date creationDate;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)

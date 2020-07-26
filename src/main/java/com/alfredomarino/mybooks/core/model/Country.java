@@ -17,15 +17,11 @@ import javax.persistence.Table;
  * Country
  */
 @Entity
-@Table(name = "country")
 public class Country {
 
     @Id
-    @Column(name = "idcountry")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long countryId;
-
-    @Column(name = "name")
     private String name;
 
     @JsonIgnore

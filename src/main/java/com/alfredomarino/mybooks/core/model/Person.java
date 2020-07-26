@@ -10,48 +10,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * Person
  */
 @Entity
-@Table(name = "person")
 public class Person {
 
     @Id
-    @Column(name = "idperson")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long personId;
 
     @OneToOne
-    @JoinColumn(name = "iduser", referencedColumnName = "iduser", unique = true)
     @JsonIgnore
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", unique = true)
     private User user;
-    
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "lastname")
     private String lastName;
-
-    @Column(name = "birthdate")
     private Date birthdate;
 
     @ManyToOne
-    @JoinColumn(name = "idnativecountry")
+    @JoinColumn(name = "native_country_id")
     private Country nativeCountry;
 
     @ManyToOne
-    @JoinColumn(name = "idnativeregion")
+    @JoinColumn(name = "native_region_id")
     private Region nativeRegion;
     
     @ManyToOne
-    @JoinColumn(name = "idcurrentcountry")
+    @JoinColumn(name = "current_country_id")
     private Country currentCountry;
 
     @ManyToOne
-    @JoinColumn(name = "idcurrentregion")
+    @JoinColumn(name = "current_region_id")
     private Region currentRegion;
-
-    @Column(name = "aboutme")
     private String aboutMe;
-
-    @Column(name = "photo")
     private String photo;
 
     /**

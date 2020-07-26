@@ -9,52 +9,34 @@ import javax.persistence.*;
  * Book
  */
 @Entity
-@Table(name = "book")
 public class Book {
 
     @Id
-    @Column(name = "idbook")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "subtitle")
     private String subtitle;
-
-    @Column(name = "description")
     private String description;
 
     @JoinTable(
             name = "written",
-            joinColumns = @JoinColumn(name = "bookid", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "authorid", nullable = false)
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false)
     )
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Author> authors;
-
-    @Column(name = "publicationdate")
     private Date publicationDate;
 
     @JoinTable(
             name = "categorize",
-            joinColumns = @JoinColumn(name = "bookid", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "categoryid", nullable = false)
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
     )
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Category> categories;
-
-    @Column(name = "image")
     private String image;
-
-    @Column(name = "isbn10")
     private String isbn10;
-
-    @Column(name = "isbn13")
     private String isbn13;
-
-    @Column(name = "idgoogle")
     private String googleId;
 
     /**

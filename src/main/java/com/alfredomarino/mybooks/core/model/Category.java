@@ -9,15 +9,11 @@ import java.util.List;
  * Category
  */
 @Entity
-@Table(name = "category")
 public class Category {
 
     @Id
-    @Column(name = "idcategory")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long categoryId;
-
-    @Column(name = "name")
     private String name;
 
     @JsonIgnore
