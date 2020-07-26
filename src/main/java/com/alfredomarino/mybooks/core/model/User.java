@@ -9,27 +9,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
+/**
+ * User
+ */
 @Entity
-@Table(name = "user")
 public class User {
 
     @Id
-    @Column(name = "iduser")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-
-    @Column(name = "username")
-    private String userName;
-
-    @Column(name = "password")
+    private String username;
     private String password;
-
-    @Column(name = "userstate")
     private Short userState;
 
-    @Column(name = "creationdate", insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     private Date creationDate;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
@@ -50,17 +44,17 @@ public class User {
     }
 
     /**
-     * @return the userName
+     * @return the username
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * @param userName the userName to set
+     * @param username the username to set
      */
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /**
@@ -124,7 +118,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", userState=" + userState +
                 ", creationDate=" + creationDate +

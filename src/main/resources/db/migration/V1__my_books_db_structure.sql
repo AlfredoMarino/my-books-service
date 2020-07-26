@@ -1,223 +1,175 @@
--- MySQL Workbench Forward Engineering
-
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
 -- -----------------------------------------------------
--- Schema mydb
+-- DATABASE mybooksdb
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`author`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`author` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`author` (
-  `idauthor` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  PRIMARY KEY (`idauthor`),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `author`
+--
+DROP TABLE IF EXISTS `author`;
+CREATE TABLE `author` (
+  `author_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`author_id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`category`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`category` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`category` (
-  `idcategory` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NULL DEFAULT NULL,
-  `englishname` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NULL DEFAULT NULL,
-  PRIMARY KEY (`idcategory`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `category`
+--
+DROP TABLE IF EXISTS `category`;
+CREATE TABLE `category` (
+  `category_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`book`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`book` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`book` (
-  `idbook` INT(11) NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(256) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `subtitle` VARCHAR(256) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `synopsis` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `idauthor` INT(11) NOT NULL,
-  `publicationdate` DATE NOT NULL,
-  `idcategory` INT(11) NOT NULL,
-  `image` VARCHAR(512) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `isbn10` BIGINT(20) NOT NULL,
-  `isbn13` BIGINT(20) NOT NULL,
-  `idgoogle` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  PRIMARY KEY (`idbook`),
-  INDEX `idauthor` (`idauthor` ASC) VISIBLE,
-  INDEX `idcategory` (`idcategory` ASC) VISIBLE,
-  CONSTRAINT `book_ibfk_1`
-    FOREIGN KEY (`idcategory`)
-    REFERENCES `mybooksdb`.`category` (`idcategory`),
-  CONSTRAINT `book_ibfk_2`
-    FOREIGN KEY (`idauthor`)
-    REFERENCES `mybooksdb`.`author` (`idauthor`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 18
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `country`
+--
+DROP TABLE IF EXISTS `country`;
+CREATE TABLE `country` (
+  `country_id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`country`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`country` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`country` (
-  `idcountry` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(256) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  PRIMARY KEY (`idcountry`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
-
-
--- -----------------------------------------------------
--- Table `mybooksdb`.`user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`user` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`user` (
-  `iduser` INT(11) NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `password` VARCHAR(30) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `userstate` TINYINT(11) NOT NULL DEFAULT '1' COMMENT '1: Activo | 2: Inactivo',
-  `creationdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`iduser`),
-  UNIQUE INDEX `nameunico` (`username` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 19
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `region`
+--
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE `region` (
+  `region_id` int NOT NULL AUTO_INCREMENT,
+  `country_id` int NOT NULL,
+  `name` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`region_id`),
+  KEY `country` (`country_id`),
+  CONSTRAINT `region_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `country` (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2204 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`region`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`region` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`region` (
-  `idregion` INT(11) NOT NULL AUTO_INCREMENT,
-  `idcountry` INT(11) NOT NULL,
-  `name` VARCHAR(256) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  PRIMARY KEY (`idregion`),
-  INDEX `country` (`idcountry` ASC) VISIBLE,
-  CONSTRAINT `region_ibfk_1`
-    FOREIGN KEY (`idcountry`)
-    REFERENCES `mybooksdb`.`country` (`idcountry`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `book`
+--
+DROP TABLE IF EXISTS `book`;
+CREATE TABLE `book` (
+  `book_id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `subtitle` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_spanish_ci,
+  `publication_date` date DEFAULT NULL,
+  `image` varchar(512) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `isbn10` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `isbn13` varchar(13) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `google_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`book_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`person`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`person` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`person` (
-  `idperson` INT(11) NOT NULL AUTO_INCREMENT,
-  `iduser` INT(11) NOT NULL,
-  `name` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `lastname` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `birthdate` DATE NOT NULL,
-  `idnativecountry` INT(11) NOT NULL,
-  `idnativeregion` INT(11) NOT NULL,
-  `idcurrentcountry` INT(11) NOT NULL,
-  `idcurrentregion` INT(11) NOT NULL,
-  `aboutme` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `photo` VARCHAR(256) CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  PRIMARY KEY (`idperson`),
-  UNIQUE INDEX `iduser_2` (`iduser` ASC) VISIBLE,
-  INDEX `iduser` (`iduser` ASC) VISIBLE,
-  INDEX `idnativecountry` (`idnativecountry` ASC) VISIBLE,
-  INDEX `idnativeregion` (`idnativeregion` ASC) VISIBLE,
-  INDEX `idcurrentcountry` (`idcurrentcountry` ASC) VISIBLE,
-  INDEX `idcurrentregion` (`idcurrentregion` ASC) VISIBLE,
-  CONSTRAINT `person_ibfk_1`
-    FOREIGN KEY (`iduser`)
-    REFERENCES `mybooksdb`.`user` (`iduser`),
-  CONSTRAINT `person_ibfk_2`
-    FOREIGN KEY (`idnativecountry`)
-    REFERENCES `mybooksdb`.`country` (`idcountry`),
-  CONSTRAINT `person_ibfk_3`
-    FOREIGN KEY (`idcurrentcountry`)
-    REFERENCES `mybooksdb`.`country` (`idcountry`),
-  CONSTRAINT `person_ibfk_4`
-    FOREIGN KEY (`idnativeregion`)
-    REFERENCES `mybooksdb`.`region` (`idregion`),
-  CONSTRAINT `person_ibfk_5`
-    FOREIGN KEY (`idcurrentregion`)
-    REFERENCES `mybooksdb`.`region` (`idregion`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 11
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `categorize`
+--
+DROP TABLE IF EXISTS `categorize`;
+CREATE TABLE `categorize` (
+  `book_id` int NOT NULL,
+  `category_id` int NOT NULL,
+  PRIMARY KEY (`book_id`,`category_id`),
+  KEY `categoryid_idx` (`category_id`),
+  CONSTRAINT `bookid_fk` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `categoryid_fk` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
--- -----------------------------------------------------
--- Table `mybooksdb`.`library`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mybooksdb`.`library` ;
-
-CREATE TABLE IF NOT EXISTS `mybooksdb`.`library` (
-  `idperson` INT(11) NOT NULL,
-  `idbook` INT(11) NOT NULL,
-  `startdate` DATE NOT NULL,
-  `enddate` DATE NOT NULL,
-  `idinitialcountry` INT(11) NOT NULL,
-  `idinitialregion` INT(11) NOT NULL,
-  `idendcountry` INT(11) NOT NULL,
-  `idendregion` INT(11) NOT NULL,
-  `rating` DOUBLE NOT NULL,
-  `note` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_spanish_ci' NOT NULL,
-  `creationdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idbook`, `idperson`),
-  INDEX `idperson` (`idperson` ASC) VISIBLE,
-  INDEX `idbook` (`idbook` ASC) VISIBLE,
-  INDEX `idinitialcountry` (`idinitialcountry` ASC) VISIBLE,
-  INDEX `idinitialregion` (`idinitialregion` ASC) VISIBLE,
-  INDEX `idendcountry` (`idendcountry` ASC) VISIBLE,
-  INDEX `idendregion` (`idendregion` ASC) VISIBLE,
-  CONSTRAINT `library_ibfk_1`
-    FOREIGN KEY (`idbook`)
-    REFERENCES `mybooksdb`.`book` (`idbook`),
-  CONSTRAINT `library_ibfk_2`
-    FOREIGN KEY (`idperson`)
-    REFERENCES `mybooksdb`.`person` (`idperson`),
-  CONSTRAINT `library_ibfk_3`
-    FOREIGN KEY (`idinitialcountry`)
-    REFERENCES `mybooksdb`.`country` (`idcountry`),
-  CONSTRAINT `library_ibfk_4`
-    FOREIGN KEY (`idendcountry`)
-    REFERENCES `mybooksdb`.`country` (`idcountry`),
-  CONSTRAINT `library_ibfk_5`
-    FOREIGN KEY (`idinitialregion`)
-    REFERENCES `mybooksdb`.`region` (`idregion`),
-  CONSTRAINT `library_ibfk_6`
-    FOREIGN KEY (`idendregion`)
-    REFERENCES `mybooksdb`.`region` (`idregion`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_spanish_ci;
+--
+-- Table structure for table `user`
+--
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `user_state` tinyint NOT NULL DEFAULT '1' COMMENT '1: Activo | 2: Inactivo',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `nameunico` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Table structure for table `person`
+--
+DROP TABLE IF EXISTS `person`;
+CREATE TABLE `person` (
+  `person_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `birthdate` date NOT NULL,
+  `native_country_id` int NOT NULL,
+  `native_region_id` int NOT NULL,
+  `current_country_id` int NOT NULL,
+  `current_region_id` int NOT NULL,
+  `about_me` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `photo` varchar(256) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`person_id`),
+  UNIQUE KEY `iduser_2` (`user_id`),
+  KEY `iduser` (`user_id`),
+  KEY `idnativecountry` (`native_country_id`),
+  KEY `idnativeregion` (`native_region_id`),
+  KEY `idcurrentcountry` (`current_country_id`),
+  KEY `idcurrentregion` (`current_region_id`),
+  CONSTRAINT `person_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `person_ibfk_2` FOREIGN KEY (`native_country_id`) REFERENCES `country` (`country_id`),
+  CONSTRAINT `person_ibfk_3` FOREIGN KEY (`current_country_id`) REFERENCES `country` (`country_id`),
+  CONSTRAINT `person_ibfk_4` FOREIGN KEY (`native_region_id`) REFERENCES `region` (`region_id`),
+  CONSTRAINT `person_ibfk_5` FOREIGN KEY (`current_region_id`) REFERENCES `region` (`region_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+--
+-- Table structure for table `library`
+--
+DROP TABLE IF EXISTS `library`;
+CREATE TABLE `library` (
+  `person_id` int NOT NULL,
+  `book_id` int NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `initial_country_id` int NOT NULL,
+  `initial_region_id` int NOT NULL,
+  `end_country_id` int NOT NULL,
+  `end_region_id` int NOT NULL,
+  `rating` double NOT NULL,
+  `note` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`book_id`,`person_id`),
+  KEY `idperson` (`person_id`),
+  KEY `idbook` (`book_id`),
+  KEY `idinitialcountry` (`initial_country_id`),
+  KEY `idinitialregion` (`initial_region_id`),
+  KEY `idendcountry` (`end_country_id`),
+  KEY `idendregion` (`end_region_id`),
+  CONSTRAINT `library_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`),
+  CONSTRAINT `library_ibfk_2` FOREIGN KEY (`person_id`) REFERENCES `person` (`person_id`),
+  CONSTRAINT `library_ibfk_3` FOREIGN KEY (`initial_country_id`) REFERENCES `country` (`country_id`),
+  CONSTRAINT `library_ibfk_4` FOREIGN KEY (`end_country_id`) REFERENCES `country` (`country_id`),
+  CONSTRAINT `library_ibfk_5` FOREIGN KEY (`initial_region_id`) REFERENCES `region` (`region_id`),
+  CONSTRAINT `library_ibfk_6` FOREIGN KEY (`end_region_id`) REFERENCES `region` (`region_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+--
+-- Table structure for table `written`
+--
+DROP TABLE IF EXISTS `written`;
+CREATE TABLE `written` (
+  `book_id` int NOT NULL,
+  `author_id` int NOT NULL,
+  PRIMARY KEY (`book_id`,`author_id`),
+  KEY `authorid_idx` (`author_id`),
+  CONSTRAINT `authorid` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`),
+  CONSTRAINT `bookid` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+

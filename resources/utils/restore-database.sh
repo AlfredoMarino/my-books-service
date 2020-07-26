@@ -1,7 +1,7 @@
 #!/bin/bash
-# Restarua base de datos
+# Restaura base de datos
 
-# lanzar desde raiz del proyecto con:
+# lanzar desde raíz del proyecto con:
 # ./resources/utils/restore-database.sh
 
 mvn flyway:clean

@@ -10,55 +10,42 @@ import javax.persistence.*;
  * Library
  */
 @Entity
-@Table(name = "library")
 @IdClass(LibraryId.class)
 public class Library {
 
     @Id
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "idperson")
+    @JsonIgnore
+    @JoinColumn(name = "person_id")
     private Person person;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "idbook")
+    @JoinColumn(name = "book_id")
     private Book book;
-
-    @Column(name = "startdate")
     private Date startDate;
-
-    @Column(name = "enddate")
     private Date endDate;
 
     @ManyToOne
-    @JoinColumn(name = "idinitialcountry")
+    @JoinColumn(name = "initial_country_id")
     private Country initialCountry;
 
     @ManyToOne
-    @JoinColumn(name = "idinitialregion")
+    @JoinColumn(name = "initial_region_id")
     private Region initialRegion;
 
     @ManyToOne
-    @JoinColumn(name = "idendcountry")
+    @JoinColumn(name = "end_country_id")
     private Country finalCountry;
 
     @ManyToOne
-    @JoinColumn(name = "idendregion")
+    @JoinColumn(name = "end_region_id")
     private Region finalRegion;
-
-    @Column(name = "rating")
     private Double rating;
-
-    @Column(name = "note")
     private String note;
 
-    @Column(name = "creationdate", insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false)
     private Date creationDate;
-
-    public Library() {
-        
-    }
 
     /**
      * @return the person

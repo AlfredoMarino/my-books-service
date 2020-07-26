@@ -9,15 +9,11 @@ import java.util.List;
  * Author
  */
 @Entity
-@Table(name = "author")
 public class Author {
 
     @Id
-    @Column(name = "idauthor")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long authorId;
-
-    @Column(name = "name")
     private String name;
 
     @JsonIgnore
@@ -25,7 +21,6 @@ public class Author {
     private List<Book> books;
 
     public Author() {
-        
     }
 
     public Author(String name) {

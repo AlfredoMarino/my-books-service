@@ -9,49 +9,34 @@ import javax.persistence.*;
  * Book
  */
 @Entity
-@Table(name = "book")
 public class Book {
 
     @Id
-    @Column(name = "idbook")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookId;
-
-    @Column(name = "title")
     private String title;
-
-    @Column(name = "subtitle")
     private String subtitle;
-
-    @Column(name = "synopsis")
     private String description;
 
     @JoinTable(
             name = "written",
-            joinColumns = @JoinColumn(name = "bookid", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "authorid", nullable = false)
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false)
     )
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Author> authors;
-
-    @Column(name = "publicationdate")
     private Date publicationDate;
 
-    //TODO PUEDE TENER MAS CATEGORIAS
-    @ManyToOne
-    @JoinColumn(name = "idcategory")
-    private Category category;
-
-    @Column(name = "image")
+    @JoinTable(
+            name = "categorize",
+            joinColumns = @JoinColumn(name = "book_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Category> categories;
     private String image;
-
-    @Column(name = "isbn10")
     private String isbn10;
-
-    @Column(name = "isbn13")
     private String isbn13;
-
-    @Column(name = "idgoogle")
     private String googleId;
 
     /**
@@ -139,17 +124,17 @@ public class Book {
     }
 
     /**
-     * @return the category
+     * @return the categories
      */
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     /**
-     * @param category the category to set
+     * @param categories the categories to set
      */
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     /**
@@ -217,7 +202,7 @@ public class Book {
                 ", description='" + description + '\'' +
                 ", authors=" + authors +
                 ", publicationDate=" + publicationDate +
-                ", category=" + category +
+                ", categories=" + categories +
                 ", image='" + image + '\'' +
                 ", isbn10='" + isbn10 + '\'' +
                 ", isbn13='" + isbn13 + '\'' +

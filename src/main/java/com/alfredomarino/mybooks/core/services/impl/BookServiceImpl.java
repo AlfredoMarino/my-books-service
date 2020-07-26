@@ -1,6 +1,7 @@
 package com.alfredomarino.mybooks.core.services.impl;
 
 import com.alfredomarino.mybooks.core.model.Author;
+import com.alfredomarino.mybooks.core.model.Category;
 import com.alfredomarino.mybooks.core.repository.BookRepository;
 import com.alfredomarino.mybooks.core.services.*;
 import com.alfredomarino.mybooks.core.model.Book;
@@ -30,11 +31,19 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book createBook(Book book) {
-        book.setAuthors(book.getAuthors().stream().map(author -> {
-            Author savedAuthor = this.authorService.getAuthorByName(author.getName());
-            return savedAuthor != null ? savedAuthor : author;
-        }).collect(Collectors.toList()));
-        book.setCategory(this.categoryService.createCategoryIfNotExist(book.getCategory()));
+        if (book.getAuthors() != null) {
+            book.setAuthors(book.getAuthors().stream().map(author -> {
+                Author savedAuthor = this.authorService.getAuthorByName(author.getName());
+                return savedAuthor != null ? savedAuthor : author;
+            }).collect(Collectors.toList()));
+        }
+        if (book.getCategories() != null) {
+            book.setCategories(book.getCategories().stream().map(category -> {
+                Category savedCategory = this.categoryService.getCategoryByName(category.getName());
+                return savedCategory != null ? savedCategory : category;
+            }).collect(Collectors.toList()));
+        }
+
         return this.bookRepository.save(book);
     }
 
