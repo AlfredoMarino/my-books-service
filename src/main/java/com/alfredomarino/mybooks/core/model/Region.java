@@ -20,8 +20,8 @@ public class Region {
     private Long regionId;
 
     @ManyToOne
-    @JoinColumn(name = "country_id")
     @JsonIgnore
+    @JoinColumn(name = "country_id")
     private Country country;
     private String name;
 

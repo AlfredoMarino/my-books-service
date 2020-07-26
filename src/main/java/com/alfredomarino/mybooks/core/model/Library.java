@@ -43,6 +43,7 @@ public class Library {
     private Region finalRegion;
     private Double rating;
     private String note;
+
     @Column(insertable = false, updatable = false)
     private Date creationDate;
 
