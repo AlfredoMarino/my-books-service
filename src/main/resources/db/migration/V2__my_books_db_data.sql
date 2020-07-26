@@ -1,4 +1,4 @@
-INSERT INTO `country` (`idcountry`, `name`) VALUES
+INSERT INTO `country` (`country_id`, `name`) VALUES
 (1, 'Australia'),
 (2, 'Austria'),
 (3, 'Azerbaiyán'),
@@ -216,7 +216,7 @@ INSERT INTO `country` (`idcountry`, `name`) VALUES
 
 
 
-INSERT INTO `region` (`idregion`, `idcountry`, `name`) VALUES
+INSERT INTO `region` (`region_id`, `country_id`, `name`) VALUES
 (1, 3, 'Azerbaijan'),
 (2, 3, 'Nargorni Karabakh'),
 (3, 3, 'Nakhichevanskaya Region'),
