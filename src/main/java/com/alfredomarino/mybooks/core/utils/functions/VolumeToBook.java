@@ -26,7 +26,7 @@ public class VolumeToBook implements Function<Volume, Book> {
 
         List<String> authorNames = volume.getVolumeInfo().getAuthors();
         if (authorNames != null && !authorNames.isEmpty()) {
-            book.setAuthors(volume.getVolumeInfo().getAuthors().stream().map(Author::new).collect(Collectors.toList()));
+            book.setAuthors(authorNames.stream().map(Author::new).collect(Collectors.toList()));
         }
         String publishedDate = volume.getVolumeInfo().getPublishedDate();
         if (publishedDate != null) {
@@ -34,7 +34,7 @@ public class VolumeToBook implements Function<Volume, Book> {
         }
         List<String> categoryNames = volume.getVolumeInfo().getCategories();
         if (categoryNames != null && !categoryNames.isEmpty()) {
-            book.setCategory(new Category(categoryNames.get(0)));
+            book.setCategories(categoryNames.stream().map(Category::new).collect(Collectors.toList()));
         }
         List<Volume.VolumeInfo.IndustryIdentifiers> industryIdentifiers = volume.getVolumeInfo().getIndustryIdentifiers();
         if (industryIdentifiers != null) {

@@ -1,11 +1,9 @@
 package com.alfredomarino.mybooks.core.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Category
@@ -21,6 +19,10 @@ public class Category {
 
     @Column(name = "name")
     private String name;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
+    private List<Book> books;
 
     public Category() {
     }
@@ -55,6 +57,20 @@ public class Category {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the books
+     */
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    /**
+     * @param books the name to set
+     */
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

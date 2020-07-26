@@ -23,7 +23,7 @@ public class Book {
     @Column(name = "subtitle")
     private String subtitle;
 
-    @Column(name = "synopsis")
+    @Column(name = "description")
     private String description;
 
     @JoinTable(
@@ -37,10 +37,13 @@ public class Book {
     @Column(name = "publicationdate")
     private Date publicationDate;
 
-    //TODO PUEDE TENER MAS CATEGORIAS
-    @ManyToOne
-    @JoinColumn(name = "idcategory")
-    private Category category;
+    @JoinTable(
+            name = "categorize",
+            joinColumns = @JoinColumn(name = "bookid", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "categoryid", nullable = false)
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Category> categories;
 
     @Column(name = "image")
     private String image;
@@ -139,17 +142,17 @@ public class Book {
     }
 
     /**
-     * @return the category
+     * @return the categories
      */
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
     /**
-     * @param category the category to set
+     * @param categories the categories to set
      */
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     /**
@@ -217,7 +220,7 @@ public class Book {
                 ", description='" + description + '\'' +
                 ", authors=" + authors +
                 ", publicationDate=" + publicationDate +
-                ", category=" + category +
+                ", categories=" + categories +
                 ", image='" + image + '\'' +
                 ", isbn10='" + isbn10 + '\'' +
                 ", isbn13='" + isbn13 + '\'' +

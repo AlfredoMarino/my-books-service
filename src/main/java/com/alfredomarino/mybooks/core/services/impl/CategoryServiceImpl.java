@@ -17,16 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategoryIfNotExist(Category category) {
-        Category savedCategory;
-
-        if (category.getName() == null) {
-            // TODO manejo de erroes
-            System.out.println("Category invalid");
-            return null;
-        } else {
-            savedCategory = this.categoryRepository.findByName(category.getName());
-        }
-        return (savedCategory != null) ? savedCategory : this.categoryRepository.save(category);
+    public Category getCategoryByName(String name) {
+        return this.categoryRepository.findByName(name);
     }
 }

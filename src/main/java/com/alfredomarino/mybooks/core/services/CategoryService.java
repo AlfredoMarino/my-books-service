@@ -4,5 +4,5 @@ import com.alfredomarino.mybooks.core.model.Category;
 
 public interface CategoryService {
 
-    Category createCategoryIfNotExist(Category category);
+    Category getCategoryByName(String name);
 }
