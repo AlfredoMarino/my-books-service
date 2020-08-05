@@ -17,4 +17,6 @@ public interface LibraryRepository extends JpaRepository<Library, LibraryId> {
 
     List<Library> findByBookBookId(Long bookId);
 
+    boolean existsByPersonPersonIdAndBookGoogleId(Long personId, String googleId);
+
 }

@@ -12,4 +12,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     Book findByGoogleId(String googleId);
 
+    boolean existsByGoogleId(String googleId);
+
 }

@@ -9,6 +9,7 @@ import com.alfredomarino.mybooks.core.model.Book;
 import com.alfredomarino.mybooks.core.model.Library;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,7 +31,17 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public Library createLibrary(Long personId, String googleId, Library library) {
         library.setPerson(this.personService.getPersonById(personId));
-        library.setBook(this.getOrCreateBook(googleId));
+
+        Assert.isTrue(
+                !libraryRepository.existsByPersonPersonIdAndBookGoogleId(personId, googleId),
+                "Book is already marked as read"
+        );
+        Book book = this.bookService.getBookByGoogleId(googleId);
+        if (book == null) {
+            book = this.bookService.createBook(googleId);
+        }
+        library.setBook(book);
+
         return this.libraryRepository.save(library);
     }
 
@@ -52,16 +63,5 @@ public class LibraryServiceImpl implements LibraryService {
         if (this.libraryRepository.findByBookBookId(bookId).isEmpty()) {
             this.bookService.deleteBook(bookId);
         }
-    }
-
-    private Book getOrCreateBook(String googleId) {
-        Book book = this.bookService.getBookByGoogleId(googleId);
-        if (book == null) {
-            book = this.bookService.createBook(googleId);
-        }
-        if (book == null) {
-            throw new RuntimeException("The book could not be found or created");
-        }
-        return book;
     }
 }

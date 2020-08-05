@@ -5,8 +5,10 @@ import com.alfredomarino.mybooks.core.model.Category;
 import com.alfredomarino.mybooks.core.repository.BookRepository;
 import com.alfredomarino.mybooks.core.services.*;
 import com.alfredomarino.mybooks.core.model.Book;
+import com.alfredomarino.mybooks.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.stream.Collectors;
 
@@ -49,9 +51,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book createBook(String googleId) {
-        if (this.bookRepository.findByGoogleId(googleId) != null){
-            throw new RuntimeException("Book already exists");
-        }
+        Assert.isTrue(!this.bookRepository.existsByGoogleId(googleId), "Book already exists");
 
         return this.createBook(this.searchService.getBookByGoogleId(googleId));
     }
@@ -63,7 +63,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book getBookById(Long bookId) {
-        return this.bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException(String.format("Book '%s' not found", bookId)));
+        return this.bookRepository.findById(bookId)
+                .orElseThrow(() -> new NotFoundException(String.format("Book '%s' not found", bookId)));
     }
 
     @Override

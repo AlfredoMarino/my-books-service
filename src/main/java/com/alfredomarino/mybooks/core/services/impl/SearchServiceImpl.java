@@ -4,6 +4,7 @@ import com.alfredomarino.mybooks.core.model.Book;
 import com.alfredomarino.mybooks.core.services.SearchService;
 import com.alfredomarino.mybooks.core.utils.functions.IsVolumeComplete;
 import com.alfredomarino.mybooks.core.utils.functions.VolumeToBook;
+import com.alfredomarino.mybooks.exception.NotFoundGoogleServiceException;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.books.Books;
@@ -38,18 +39,19 @@ public class SearchServiceImpl implements SearchService {
                 books = volumes.getItems().stream().filter(isVolumeComplete).map(volumeToBook).collect(Collectors.toList());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new NotFoundGoogleServiceException("Book not found with google book service", e);
         }
         return books;
     }
 
     @Override
     public Book getBookByGoogleId(String googleId) {
+        Book book;
         try {
-            return volumeToBook.apply(googleBooksClient.volumes().get(googleId).execute());
+            book = volumeToBook.apply(googleBooksClient.volumes().get(googleId).execute());
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new NotFoundGoogleServiceException("Book not found with google book service", e);
         }
-        return null;
+        return book;
     }
 }
