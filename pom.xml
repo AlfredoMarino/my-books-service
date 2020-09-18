@@ -19,7 +19,7 @@
 		<flyway-maven-plugin.version>6.3.3</flyway-maven-plugin.version>
 
 		<database.driver>com.mysql.jdbc.Driver</database.driver>
-		<database.url>jdbc:mysql://192.168.99.100:3306/mybooksdb</database.url>
+		<database.url>jdbc:mysql://localhost:3306/mybooksdb</database.url>
 		<database.username>aamv</database.username>
 		<database.password>aamv</database.password>
 	</properties>

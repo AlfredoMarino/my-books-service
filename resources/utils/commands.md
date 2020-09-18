@@ -45,3 +45,6 @@ ruta ejemplo http://192.168.99.100:5000/v1/country
     
 ## Peticion de prueba por curl
     curl http://localhost:5000/v1/country
+    
+## Correr apuntando a contenedor mysql
+    mvn clean spring-boot:run -Dspring.datasource.url=jdbc:mysql://localhost:3306/mybooksdb -Dspring.datasource.username=aamv -Dspring.datasource.password=aamv
