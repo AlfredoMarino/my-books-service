@@ -68,8 +68,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void deleteBook(Long bookId) {
-        Book book = this.getBookById(bookId);
-        this.bookRepository.delete(book);
+    public void deleteBookById(Long bookId) {
+        this.bookRepository.deleteById(bookId);
     }
 }

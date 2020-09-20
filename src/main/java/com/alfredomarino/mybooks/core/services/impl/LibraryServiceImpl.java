@@ -61,7 +61,7 @@ public class LibraryServiceImpl implements LibraryService {
         this.libraryRepository.deleteById(new LibraryId(personId, bookId));
 
         if (this.libraryRepository.findByBookBookId(bookId).isEmpty()) {
-            this.bookService.deleteBook(bookId);
+            this.bookService.deleteBookById(bookId);
         }
     }
 }

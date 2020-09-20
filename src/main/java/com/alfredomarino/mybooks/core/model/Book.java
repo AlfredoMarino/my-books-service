@@ -23,7 +23,7 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "author_id", nullable = false)
     )
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Author> authors;
     private Date publicationDate;
 
@@ -32,7 +32,7 @@ public class Book {
             joinColumns = @JoinColumn(name = "book_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "category_id", nullable = false)
     )
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Category> categories;
     private String image;
     private String isbn10;

@@ -1,0 +1,22 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybooksdb
+    username: aamv
+    password: aamv
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
