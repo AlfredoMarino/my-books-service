@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.alfredomarino</groupId>
 	<artifactId>my-books</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>My books</name>
 	<description>My Books API REST</description>
 	
