@@ -14,10 +14,10 @@ VOLUME /tmp
 EXPOSE 8080
 
 # The application's jar file
-ARG JAR_FILE1=target/my-books-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=target/my-books-1.0.0.jar
 
 # Add the application's jar to the container
-ADD ${JAR_FILE1} my-books.jar
+ADD ${JAR_FILE} my-books.jar
 
 # Run the jar file 
 # ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/my-books.jar"]
