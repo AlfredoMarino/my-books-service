@@ -1,0 +1,563 @@
+{
+	"info": {
+		"_postman_id": "229aeec3-1fda-4da2-bf88-348cafc9cfc6",
+		"name": "My books API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "google",
+			"item": [
+				{
+					"name": "Google Book",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.googleapis.com/books/v1/volumes?q=El perfume",
+							"protocol": "https",
+							"host": [
+								"www",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"books",
+								"v1",
+								"volumes"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "El perfume"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "volumes by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://www.googleapis.com/books/v1/volumes/ntWlZwEACAAJ",
+							"protocol": "https",
+							"host": [
+								"www",
+								"googleapis",
+								"com"
+							],
+							"path": [
+								"books",
+								"v1",
+								"volumes",
+								"ntWlZwEACAAJ"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users-persons",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"aamv\",\n\t\"password\": \"pass\",\n\t\"userState\": 1,\n\t\"person\": {\n\t\t\"name\": \"Alfredo\",\n\t\t\"lastName\": \"Mariño\",\n\t\t\"birthdate\": \"1995-05-15\",\n\t\t\"currentCountry\": {\n\t\t\t\"countryId\": 81\n\t\t},\n\t\t\"currentRegion\": {\n\t\t\t\"regionId\": 1674\n\t\t},\n\t\t\"nativeCountry\": {\n\t\t\t\"countryId\": 81\n\t\t},\n\t\t\"nativeRegion\": {\n\t\t\t\"regionId\": 1674\n\t\t},\n\t\t\"aboutMe\": \"code for fun\",\n\t\t\"photo\": \"00000000000000\"\n\t\n\t}\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "1688e1db-e477-4773-84da-363ee3bc66be",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "SOME_KEY",
+							"value": "SOME_KEY",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/users?username=aamv&password=pass",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"users"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "aamv"
+						},
+						{
+							"key": "password",
+							"value": "pass"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "persons",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "alfredo",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "aamv",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/persons",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"persons"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Alfredo Alejandro",
+							"disabled": true
+						},
+						{
+							"key": "apellido",
+							"value": "alfjdas",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "libraries",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"startDate\": \"2019-05-15\",\n\t\"endDate\": \"2019-05-15\",\n\t\"initialCountry\": {\n\t\t\"countryId\": 95\n\t},\n\t\"initialRegion\": {\n\t\t\"regionId\": 1866\n\t},\n\t\"finalCountry\": {\n\t\t\"countryId\": 95\n\t},\n\t\"finalRegion\": {\n\t\t\"regionId\": 1866\n\t},\n\t\"rating\": 10,\n\t\"note\": \"arrechisimo el libro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/persons/20/libraries/iqI4AwAAQBAJ",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"persons",
+						"20",
+						"libraries",
+						"iqI4AwAAQBAJ"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "libraries",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "alfredo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "aamv",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/persons/20/libraries",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"persons",
+						"20",
+						"libraries"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Alfredo Alejandro",
+							"disabled": true
+						},
+						{
+							"key": "apellido",
+							"value": "alfjdas",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "alfredo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "aamv",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/search?name=Carrie",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "nombre",
+							"value": "Alfredo Alejandro",
+							"disabled": true
+						},
+						{
+							"key": "apellido",
+							"value": "alfjdas",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Carrie"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "libraries books",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "alfredo",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "lastname",
+							"value": "aamv",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/persons/20/libraries/books",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"persons",
+						"20",
+						"libraries",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "countries",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "1688e1db-e477-4773-84da-363ee3bc66be",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/countries",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "regions by countryId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "1688e1db-e477-4773-84da-363ee3bc66be",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/countries/95/regions",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"countries",
+						"95",
+						"regions"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "user",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "ed200a87-267b-4294-a655-1667fc7ec2f6",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/books?name=El cuervo edgar alan poe",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"books"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "El cuervo edgar alan poe"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Libraries and book",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}:{{PORT}}/my-books-service/api/v1/persons/20/libraries/48",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"my-books-service",
+						"api",
+						"v1",
+						"persons",
+						"20",
+						"libraries",
+						"48"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
