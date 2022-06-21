@@ -15,7 +15,7 @@
 	
 	<properties>
 		<java.version>11</java.version>
-		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+		<mysql-connector-java.version>8.0.28</mysql-connector-java.version>
 		<flyway-maven-plugin.version>6.3.3</flyway-maven-plugin.version>
 
 		<database.driver>com.mysql.jdbc.Driver</database.driver>
